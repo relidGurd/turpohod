@@ -1,42 +1,100 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  background: #fef6ef;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --gray-elements: #c9c9c9;
+  --primary-green: #007d6f;
+  --dark-green: #00685d;
+  --primary-bg: #fef6ef;
+  --dark-grey: #676767;
+}
+.main-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 250px;
+  padding-right: 250px;
+  box-sizing: border-box;
+  max-width: 1860px; /* Ограничение ширины */
+  width: 100%; /* Гарантия адаптивности */
+}
+
+.padding-top-content {
+  padding-top: 10rem;
+}
+
+@media (max-width: 1350px) {
+  .main-container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+section:not(:last-child) {
+  margin-bottom: 100px;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.title-secondary {
+  font-size: 2rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.font-basic {
+  font-size: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.slider-button {
+  display: inline-block;
+  background-color: var(--primary-green);
+  border-radius: 10px;
+  border: 1px solid var(--primary-green);
+  color: white;
+  font-weight: 700;
+  padding: 14px 60px;
+}
+
+.primaryButtonWhite {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem 0;
+  border-radius: 10px;
+  font-size: 2rem;
+  color: var(--primary-green);
+  font-weight: 700;
+  -webkit-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  -moz-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+}
+
+.small-button {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  background-color: var(--primary-green);
+  border-radius: 10px;
+  border: 1px solid var(--primary-green);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.small-button:hover {
+  background-color: transparent;
+  color: var(--primary-green);
+  transition: 0.3s ease;
+}
+
+@media (max-width: 950px) {
+  .main-title {
+    font-size: 32px;
+  }
+
+  .padding-top-content {
+    padding-top: 5rem;
   }
 }

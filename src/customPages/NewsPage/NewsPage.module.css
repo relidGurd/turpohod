@@ -1,0 +1,56 @@
+.newsPageContent {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contentSection {
+  grid-column: span 4;
+}
+
+.productSection {
+  grid-column: span 2;
+}
+
+.newsProd {
+  position: sticky;
+  top: 150px;
+}
+
+.postImageContainer {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.postImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.postContent img {
+  width: 100%;
+  height: auto;
+}
+
+.postContent p {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1010px) {
+  .newsPageContent {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .contentSection {
+    grid-column: span 1;
+  }
+
+  .productSection {
+    grid-column: span 1;
+  }
+}

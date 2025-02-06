@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.headerMenuContainer {
+  display: flex;
+  align-items: center;
+}
+
+.headerMenuContainer li {
+  cursor: pointer;
+  padding: 0 0.5rem;
+}

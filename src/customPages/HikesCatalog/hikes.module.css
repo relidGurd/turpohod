@@ -1,0 +1,35 @@
+.hikesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.filtersContainer {
+  margin-bottom: 2rem;
+}
+.filtersContainer span {
+  display: block;
+  font-weight: 700;
+}
+
+.datePickName {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1020px) {
+  .hikesList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .hikesList {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}

@@ -1,0 +1,44 @@
+.ReviewItem {
+  border-radius: 10px;
+  background-color: white;
+  -webkit-box-shadow: -4px 21px 15px -15px rgba(34, 60, 80, 0.06);
+  -moz-box-shadow: -4px 21px 15px -15px rgba(34, 60, 80, 0.06);
+  box-shadow: -4px 21px 15px -15px rgba(34, 60, 80, 0.06);
+  padding: 20px;
+}
+
+.reviewPresent {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(---dark-grey);
+  margin-bottom: 20px;
+}
+
+.reviewCircle {
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-green);
+  border-radius: 100%;
+}
+
+.reviewerName {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.reviewHike {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(---dark-grey);
+}
+
+.reviewText {
+  margin: 15px 0;
+  color: var(---dark-grey);
+}
+
+.reviewLink {
+  font-weight: 700;
+}

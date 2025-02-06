@@ -1,0 +1,87 @@
+.instructorCard {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.instructorImageContainer {
+  grid-column: span 2;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.instructorImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.descriptionBlock {
+  grid-column: span 4;
+}
+
+.instructorTitle {
+  font-size: 32px;
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+.categoryInstructor {
+  display: flex;
+  align-items: center;
+}
+
+.categoryInstructorIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.instructorsCategoryTitle {
+  font-size: 14px;
+  color: var(--dark-grey);
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.instructorCardText {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 890px) {
+  .instructorImageContainer {
+    grid-column: span 3;
+  }
+
+  .descriptionBlock {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .instructorCard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto; /* Высота определяется содержимым */
+  }
+  .instructorImageContainer {
+    grid-column: span 1;
+  }
+
+  .descriptionBlock {
+    grid-column: span 1;
+  }
+
+  .instructorTitle {
+    font-size: 22px;
+    margin-bottom: 1rem;
+  }
+
+  .instructorCardText {
+    font-size: 14px;
+  }
+}
