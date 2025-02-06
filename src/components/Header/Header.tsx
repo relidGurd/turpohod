@@ -80,11 +80,11 @@ const Header: React.FC<any> = ({ menu, socials }) => {
             <div>
               <div className={styles.mobileSocials}>
                 <span>Email:</span>
-                <a href="mailto:info@initai.ru">info@initai.ru</a>
+                <a href="mailto:info@itai.ru">info@test.ru</a>
               </div>
               <div className={styles.mobileSocials}>
                 <span>Телефон:</span>
-                <a href="tel:+74993913354">+7 499 391-33-54</a>
+                <a href="tel:+99999999999">+7 999 999-99-99</a>
               </div>
             </div>
           </nav>

@@ -9,7 +9,7 @@ import { notFound } from "next/navigation"; // Для редиректа на 40
 import { wordpressUrl } from "./globalUrl";
 
 async function getData() {
-  const res = await fetch(`http://turpohod.local/wp-json/custom/v1/glavnaya`, {
+  const res = await fetch(`http://pohod-spb.ru/wp-json/custom/v1/glavnaya`, {
     next: { revalidate: 100 },
   });
 
@@ -23,7 +23,6 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
-  console.log(data);
   return (
     <main>
       <Slider slides={data.slides} />
