@@ -2,14 +2,14 @@ import PageBanner from "@/components/PageBunner/PageBunner";
 import { wordpressUrl } from "../globalUrl";
 import NewsCard from "@/components/NewsCard/NewsCard";
 import styles from "./blog.module.css";
+import { notFound } from "next/navigation"; // Добавьте импорт
 async function getData() {
   const res = await fetch(`${wordpressUrl}/posts`, {
     next: { revalidate: 100 },
   });
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    return alert("error");
+    notFound(); // Перенаправляет на 404
   }
 
   return res.json();

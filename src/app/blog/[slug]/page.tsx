@@ -1,6 +1,6 @@
 import { wordpressUrl } from "@/app/globalUrl";
 import NewsPage from "@/customPages/NewsPage/NewsPage";
-
+import { notFound } from "next/navigation"; // Добавьте импорт
 const fetchPostBySlug = async ({
   params,
 }: {
@@ -11,7 +11,7 @@ const fetchPostBySlug = async ({
   const response = await fetch(`${wordpressUrl}/posts?slug=${slug}`);
 
   if (!response.ok) {
-    throw new Error("Ошибка при запросе к WordPress");
+    notFound(); // Перенаправляет на 404
   }
 
   const posts = await response.json();

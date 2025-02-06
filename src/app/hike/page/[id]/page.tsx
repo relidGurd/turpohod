@@ -2,6 +2,7 @@ import ContactUs from "@/components/ContactUs/ContactUs";
 import OAuth from "oauth-1.0a";
 import crypto from "crypto";
 import PageBanner from "@/components/PageBunner/PageBunner";
+import { notFound } from "next/navigation"; // Добавьте импорт
 
 import { wordpressUrlWC } from "@/app/globalUrl";
 import HikesCatalog from "@/customPages/HikesCatalog/HikesCatalog";
@@ -37,9 +38,7 @@ async function getProducts() {
   });
 
   if (!res.ok) {
-    const errorText = await res.text();
-    console.error("Ошибка запроса:", errorText);
-    throw new Error(`Ошибка WooCommerce: ${res.status} - ${errorText}`);
+    notFound(); // Перенаправляет на 404
   }
 
   return res.json();

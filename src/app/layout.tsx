@@ -6,6 +6,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { Suspense } from "react";
 import PreloaderC from "@/components/Preloader/Preloader";
+import { notFound } from "next/navigation"; // Добавьте импорт
 
 const manrope = Manrope({
   subsets: ["cyrillic"],
@@ -23,8 +24,7 @@ async function getData() {
   });
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    return alert("error");
+    notFound(); // Перенаправляет на 404
   }
 
   return res.json();
