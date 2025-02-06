@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  const res = await fetch(`http://turpohod.local/wp-json/wp/v2/menus`, {
+  const res = await fetch(`http://pohod-spb.ru/wp-json/wp/v2/menus`, {
     next: { revalidate: 100 },
   });
 
