@@ -40,3 +40,9 @@
   height: 100%;
   object-fit: contain;
 }
+
+@media screen and (max-width: 950px) {
+  .cardContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

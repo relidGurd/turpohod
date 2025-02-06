@@ -14,6 +14,7 @@ import Popup from "@/layouts/Popup/Popup";
 import CForm from "@/components/CForm/CForm";
 import Image from "next/image";
 import ProductGallery from "@/components/ProductGallery/ProductGallery";
+import ReviewItem from "@/components/ReviewItem/ReviewItem";
 
 const ProductPage: React.FC<any> = ({
   title,
@@ -45,7 +46,7 @@ const ProductPage: React.FC<any> = ({
       title: "Галерея",
       content: hasMounted ? <ProductGallery images={images} /> : "",
     },
-    { title: "Комментарии", content: "Содержимое третьей вкладки" },
+    { title: "Комментарии", content: hasMounted ? <ReviewItem /> : "" },
   ];
 
   const [value, setValue] = useState(tabData[0].title);
@@ -55,7 +56,7 @@ const ProductPage: React.FC<any> = ({
   return (
     <section className="main-container">
       <div className={styles.cardContainer}>
-        <div>
+        <div style={{ width: "100%" }}>
           <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
             {images.map((el: any) => (
               <SwiperSlide key={el.id}>
@@ -72,7 +73,7 @@ const ProductPage: React.FC<any> = ({
             ))}
           </Swiper>
         </div>
-        <div>
+        <div className={styles.informCard}>
           <h1 className={`${styles.productTitle} main-title`}>{title}</h1>
           <div className={styles.productInfo}>
             <div>
@@ -140,6 +141,9 @@ const ProductPage: React.FC<any> = ({
             },
             "& .MuiTabs-indicator": {
               display: "none", // Убираем стандартный индикатор
+            },
+            "& li::marker": {
+              display: "none", // Убираем маркер
             },
           }}>
           {tabData.map((tab) => (

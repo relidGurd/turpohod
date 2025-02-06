@@ -18,7 +18,7 @@ const HeaderNavigations: React.FC<any> = ({ logo, menu }) => {
           ))}
         </ul>
       </nav>
-      <div>Search Component</div>
+      {/* <div>Search Component</div> */}
     </div>
   );
 };

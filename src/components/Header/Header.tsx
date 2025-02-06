@@ -61,21 +61,13 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           </div>
           <nav>
             <ul className={styles.mobileLinks}>
-              <li>
-                <Link href={"#about"} onClick={() => handleClose()}>
-                  О нас
-                </Link>
-              </li>
-              <li>
-                <Link href={"#prod"} onClick={() => handleClose()}>
-                  Услуги
-                </Link>
-              </li>
-              <li>
-                <Link href={"#contacts"} onClick={() => handleClose()}>
-                  Контакты
-                </Link>
-              </li>
+              {menu.map((el: any) => (
+                <li>
+                  <Link href={el.url} onClick={() => handleClose()}>
+                    {el.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <div>
               <div className={styles.mobileSocials}>
