@@ -30,6 +30,7 @@
   font-size: 32px;
   color: var(--primary-green);
   font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
 .categoryInstructor {

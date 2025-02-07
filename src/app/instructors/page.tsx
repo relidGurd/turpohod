@@ -20,8 +20,6 @@ async function getData() {
 
 const InstructorsPage = async () => {
   const data = await getData();
-
-  console.log(data.selected_products);
   return (
     <main>
       <PageBanner title={"Инструкторы"} />
@@ -29,7 +27,7 @@ const InstructorsPage = async () => {
         {data.instructors.map((el: any) => (
           <InstructorCard
             key={el.id}
-            title={el.title.rendered}
+            title={el.title}
             hike_type={el.hike_type}
             featured_image={el.featured_image}
             description={el.description}

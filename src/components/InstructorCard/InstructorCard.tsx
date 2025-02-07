@@ -12,7 +12,7 @@ const InstructorCard: React.FC<any> = ({
       <div className={styles.instructorImageContainer}>
         <Image
           className={styles.instructorImage}
-          src={featured_image ? featured_image : "/example.jpg"}
+          src={featured_image ? featured_image : "/example.png"}
           width={850}
           height={850}
           alt=""
@@ -25,7 +25,7 @@ const InstructorCard: React.FC<any> = ({
             <div className={styles.categoryInstructorIcon}>
               <Image
                 className={styles.instructorImage}
-                src={"/"}
+                src={"/mountain.svg"}
                 width={25}
                 height={25}
                 alt=""

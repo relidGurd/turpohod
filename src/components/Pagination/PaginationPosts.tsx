@@ -17,8 +17,9 @@ const PaginationPosts: React.FC<any> = ({ hikes_pages }) => {
     setCurrentPage(page);
     if (page === 1) {
       router.push(`/blog`);
+    } else {
+      router.push(`/blog/${page}`);
     }
-    router.push(`/blog/${page}`);
   };
 
   return (

@@ -17,8 +17,9 @@ const PaginationHukes: React.FC<any> = ({ hikes_pages }) => {
     setCurrentPage(page);
     if (page === 1) {
       router.push(`/hike`);
+    } else {
+      router.push(`/hike/hike-page/${page}`);
     }
-    router.push(`/hike/hike-page/${page}`);
   };
 
   return (

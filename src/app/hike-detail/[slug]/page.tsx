@@ -7,13 +7,15 @@ import { wordpressUrlWC } from "@/app/globalUrl";
 
 const CONSUMER_KEY = "ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0";
 const CONSUMER_SECRET = "cs_de302e3f4a9a31a84363d289ed2dbd824a71b558";
-const API_URL = `${wordpressUrlWC}/products`;
 
 async function getProductBySlug({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const slug = (await params).slug;
+  const API_URL = `${wordpressUrlWC}/products?slug=${slug}`;
+
   const oauth = new OAuth({
     consumer: { key: CONSUMER_KEY, secret: CONSUMER_SECRET },
     signature_method: "HMAC-SHA1",
@@ -24,7 +26,6 @@ async function getProductBySlug({
         .digest("base64");
     },
   });
-  const slug = (await params).slug;
   // Запрос всех товаров (WooCommerce не поддерживает slug напрямую)
   const request_data = {
     url: `${API_URL}`, // Запрашиваем 100 товаров (оптимально для малого каталога)

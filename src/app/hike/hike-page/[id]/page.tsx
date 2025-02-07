@@ -50,7 +50,7 @@ async function getProducts({ params }: { params: Promise<{ id: number }> }) {
 }
 const HikesPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { products, totalPages }: any = await getProducts({ params });
-
+  console.log(products);
   return (
     <main>
       <PageBanner title="Походы" />

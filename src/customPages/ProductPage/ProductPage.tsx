@@ -8,7 +8,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
-
+import { Breadcrumb } from "antd";
+import Link from "next/link";
 import { useState } from "react";
 import Popup from "@/layouts/Popup/Popup";
 import CForm from "@/components/CForm/CForm";
@@ -26,7 +27,7 @@ const ProductPage: React.FC<any> = ({
   images,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -53,8 +54,23 @@ const ProductPage: React.FC<any> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: any) => {
     setValue(newValue);
   };
+
   return (
     <section className="main-container">
+      <Breadcrumb
+        style={{ margin: "1rem 0" }}
+        items={[
+          {
+            title: <Link href="/">На главную</Link>,
+          },
+          {
+            title: <Link href={`/hike/`}>Походы</Link>,
+          },
+          {
+            title: title,
+          },
+        ]}
+      />
       <div className={styles.cardContainer}>
         <div style={{ width: "100%" }}>
           <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
@@ -84,9 +100,15 @@ const ProductPage: React.FC<any> = ({
               {date}
             </div>
           </div>
-          <p className={styles.productSmallDescription}>
-            {smallText ? smallText : "Описание отсутсвует"}
-          </p>
+          {smallText ? (
+            <div
+              className={styles.productSmallDescription}
+              dangerouslySetInnerHTML={{ __html: smallText }}
+            />
+          ) : (
+            "Описание отсутсвует"
+          )}
+
           <div className={styles.productPrice}>
             {price ? (
               <>
@@ -145,13 +167,15 @@ const ProductPage: React.FC<any> = ({
             "& li::marker": {
               display: "none", // Убираем маркер
             },
-          }}>
+          }}
+        >
           {tabData.map((tab) => (
             <Tab key={tab.title} label={tab.title} value={tab.title} />
           ))}
         </Tabs>
         <Box
-          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}>
+          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}
+        >
           <div>{tabData.find((tab) => tab.title === value)?.content}</div>
         </Box>
       </Box>

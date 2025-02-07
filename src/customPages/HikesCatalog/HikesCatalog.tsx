@@ -7,6 +7,7 @@ import { useState } from "react";
 import ruRU from "antd/locale/ru_RU";
 import "dayjs/locale/ru";
 import PaginationHukes from "@/components/Pagination/PaginationHukes";
+import { Breadcrumb } from "antd";
 
 const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const { RangePicker } = DatePicker;
@@ -17,6 +18,17 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
 
   return (
     <section className={`main-container`}>
+      <Breadcrumb
+        style={{ margin: "1rem 0" }}
+        items={[
+          {
+            title: <Link href="/">На главную</Link>,
+          },
+          {
+            title: "Походы",
+          },
+        ]}
+      />
       <div className={styles.filtersContainer}>
         <span className={styles.datePickName}>Выберите даты похода</span>
         <div>
