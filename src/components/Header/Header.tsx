@@ -50,7 +50,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
 
   return (
     <motion.header
-      initial="closed"
+      initial="open"
       animate={visible ? "open" : "closed"}
       variants={variants}
       className={styles.mainHeader}

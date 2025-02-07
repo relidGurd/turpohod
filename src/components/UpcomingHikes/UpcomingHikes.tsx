@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import ProductCard from "../ProductCard/ProductCard";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Link from "next/link";
@@ -21,6 +21,11 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
         <Swiper
           slidesPerView={1}
           spaceBetween={20}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          loop={true}
           breakpoints={{
             750: {
               slidesPerView: 2,
@@ -34,7 +39,6 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
           className={`mySwiper ${styles.productList}`}
         >
           {hikes.map((el: any) => (
@@ -55,7 +59,11 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
         </Swiper>
       </div>
       <div style={{ textAlign: "center", marginTop: "2rem" }}>
-        <Link href={"/hike"} className={`primaryButtonWhite`}>
+        <Link
+          style={{ cursor: "pointer" }}
+          href={"/hike"}
+          className={`primaryButtonWhite`}
+        >
           Смотреть все
         </Link>
       </div>
