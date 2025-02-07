@@ -24,6 +24,13 @@ body {
   padding-top: 10rem;
 }
 
+@media (max-width: 1550px) {
+  .main-container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
 @media (max-width: 1350px) {
   .main-container {
     padding-left: 20px;
