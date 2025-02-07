@@ -5,11 +5,12 @@ import HeaderNavigations from "./HeaderNavigations/HeaderNavigations";
 import Link from "next/link";
 import Burger from "@/icons/Burger";
 import CloseIcon from "@/icons/CloseIcon";
-import { motion } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 const Header: React.FC<any> = ({ menu, socials }) => {
-  const [open, setOpen] = useState(false);
+  const [openMobile, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -19,8 +20,41 @@ const Header: React.FC<any> = ({ menu, socials }) => {
     setOpen(false);
   };
 
+  const [hideMenu, sethideMenu] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  const { scrollY } = useScroll();
+  const lastScrollY = useRef(0);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest < lastScrollY.current) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+    lastScrollY.current = latest;
+  });
+
+  const variants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "tween", ease: "easeInOut", duration: 0.3 },
+    },
+    closed: {
+      opacity: 0,
+      y: "-100%",
+      transition: { type: "tween", ease: "easeInOut", duration: 0.3 },
+    },
+  };
+
   return (
-    <header className={styles.mainHeader}>
+    <motion.header
+      initial="closed"
+      animate={visible ? "open" : "closed"}
+      variants={variants}
+      className={styles.mainHeader}
+    >
       <div className={styles.headerContainer}>
         <HeaderContacts
           contacts={socials.header_contacts}
@@ -40,7 +74,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
         </div>
         <motion.div
           initial={{ x: "100%" }}
-          animate={{ x: open ? 0 : "100%" }}
+          animate={{ x: openMobile ? 0 : "100%" }}
           transition={{ type: "spring", stiffness: 150 }}
           className={styles.menuListMob}
         >
@@ -62,7 +96,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           </div>
           <nav>
             <ul className={styles.mobileLinks}>
-              {menu.map((el: any, index: number) => (
+              {menu.map((el: any, index: any) => (
                 <li key={index}>
                   <Link href={el.url} onClick={() => handleClose()}>
                     {el.title}
@@ -83,7 +117,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           </nav>
         </motion.div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
