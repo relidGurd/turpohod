@@ -5,6 +5,8 @@ import styles from "./blog.module.css";
 import { notFound } from "next/navigation"; // Добавьте импорт
 import PaginationHukes from "@/components/Pagination/PaginationHukes";
 import PaginationPosts from "@/components/Pagination/PaginationPosts";
+import Link from "next/link";
+import { Breadcrumb } from "antd";
 async function getData() {
   const res = await fetch(`${wordpressUrl}/posts?per_page=10`, {
     next: { revalidate: 100 },
@@ -24,10 +26,21 @@ async function getData() {
 const BlogPage = async () => {
   const { posts, totalPages } = await getData();
   console.log(totalPages);
+
+  const items = [
+    {
+      title: <Link href="/">На главную</Link>,
+    },
+    {
+      title: "Новости",
+    },
+  ];
+
   return (
     <main>
       <PageBanner title={"Новости"} />
       <section className={"main-container"}>
+        <Breadcrumb style={{ marginBottom: "2rem" }} items={items} />
         <div className={styles.NewsList}>
           {posts.map((el: any) => (
             <NewsCard

@@ -12,7 +12,10 @@ import { Pagination } from "swiper/modules";
 const MainRevies: React.FC<any> = () => {
   return (
     <section className="main-container">
-      <SectionTitle />
+      <SectionTitle
+        title="Отзывы о нас"
+        description="Мы гордимся тем, что наши походы дарят людям радость и незабываемые впечатления. Вот что говорят о нас наши участники:"
+      />
       <Swiper
         style={{ padding: "20px 0" }}
         slidesPerView={1}
@@ -31,7 +34,8 @@ const MainRevies: React.FC<any> = () => {
           clickable: true,
         }}
         modules={[Pagination]}
-        className={`mySwiper ${styles.productList}`}>
+        className={`mySwiper ${styles.productList}`}
+      >
         <SwiperSlide>
           <ReviewItem />
         </SwiperSlide>

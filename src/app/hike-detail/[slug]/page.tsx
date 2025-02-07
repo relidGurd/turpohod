@@ -4,6 +4,7 @@ import ProductPage from "@/customPages/ProductPage/ProductPage";
 import OAuth from "oauth-1.0a";
 import crypto from "crypto";
 import { wordpressUrlWC } from "@/app/globalUrl";
+import { notFound } from "next/navigation";
 
 const CONSUMER_KEY = "ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0";
 const CONSUMER_SECRET = "cs_de302e3f4a9a31a84363d289ed2dbd824a71b558";
@@ -42,11 +43,8 @@ async function getProductBySlug({
   });
 
   if (!res.ok) {
-    const errorText = await res.text();
-    console.error("Ошибка запроса:", errorText);
-    throw new Error(`Ошибка WooCommerce: ${res.status} - ${errorText}`);
+    notFound(); // Перенаправляет на 404
   }
-
   const products = await res.json();
 
   const product = products.find((p: any) => p.slug === slug);

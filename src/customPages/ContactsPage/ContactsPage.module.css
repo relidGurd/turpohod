@@ -3,12 +3,17 @@
   font-size: 64px;
   color: var(--primary-green);
   font-weight: 700;
-  padding-top: 10rem;
+  padding-top: 2rem;
+}
+
+.bread {
+  margin-top: 10rem;
 }
 
 .contactsDescription {
   text-align: center;
   color: var(--primary-green);
+  padding-bottom: 4rem;
 }
 
 .formTitle {
@@ -110,6 +115,12 @@
 
 .errorInput {
   color: rgb(179, 1, 1);
+}
+
+@media screen and (max-width: 1000px) {
+  .bread {
+    margin-top: 6rem;
+  }
 }
 
 @media screen and (max-width: 920px) {

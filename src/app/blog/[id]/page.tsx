@@ -4,6 +4,8 @@ import NewsCard from "@/components/NewsCard/NewsCard";
 import styles from "./blog.module.css";
 import { notFound } from "next/navigation"; // Добавьте импорт
 import PaginationPosts from "@/components/Pagination/PaginationPosts";
+import { Breadcrumb } from "antd";
+import Link from "next/link";
 async function getData({ params }: { params: Promise<{ id: number }> }) {
   const id = (await params).id;
 
@@ -24,11 +26,20 @@ async function getData({ params }: { params: Promise<{ id: number }> }) {
 
 const BlogPage = async ({ params }: { params: Promise<{ id: number }> }) => {
   const { posts, totalPages } = await getData({ params });
-  console.log(totalPages);
+  const items = [
+    {
+      title: <Link href="/">На главную</Link>,
+    },
+    {
+      title: "Новости",
+    },
+  ];
+
   return (
     <main>
       <PageBanner title={"Новости"} />
       <section className={"main-container"}>
+        <Breadcrumb style={{ marginBottom: "2rem" }} items={items} />
         <div className={styles.NewsList}>
           {posts.map((el: any) => (
             <NewsCard

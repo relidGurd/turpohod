@@ -3,7 +3,12 @@
 import Image from "next/image";
 import styles from "./SectionTitle.module.css";
 
-const SectionTitle: React.FC<any> = () => {
+interface ISection {
+  title: string;
+  description: string;
+}
+
+const SectionTitle: React.FC<ISection> = ({ title, description }) => {
   return (
     <>
       <div className={styles.mainSubtitle}>
@@ -18,14 +23,9 @@ const SectionTitle: React.FC<any> = () => {
 
       <div className={styles.descriptionContainer}>
         <div className={styles.descriptionTitles}>
-          <h2 className="main-title">Ближайшие походы</h2>
+          <h2 className="main-title">{title}</h2>
         </div>
-        <p className={`${styles.descriptionText} font-basic`}>
-          Присоединяйтесь к нашим приключениям! Мы организуем походы любой
-          сложности для любителей природы и активного отдыха. От легких прогулок
-          выходного дня до сложных многодневных маршрутов – выбирайте то, что
-          подходит именно вам!
-        </p>
+        <p className={`${styles.descriptionText} font-basic`}>{description}</p>
       </div>
     </>
   );

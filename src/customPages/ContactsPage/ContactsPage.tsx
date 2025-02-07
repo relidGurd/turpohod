@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IMaskInput } from "react-imask";
+import { Breadcrumb } from "antd";
+import Link from "next/link";
 
 // Схема валидации
 const validationSchema = Yup.object({
@@ -26,9 +28,17 @@ const ContactsPage = () => {
     },
   });
 
+  const items = [
+    {
+      title: <Link href="/">На главную</Link>,
+    },
+    {
+      title: "Контакты",
+    },
+  ];
   return (
     <section className="main-container">
-      <div></div>
+      <Breadcrumb className={styles.bread} items={items} />
       <div>
         <div>
           <h1 className={styles.contactsTitle}>Свяжитесь с нами</h1>
@@ -103,7 +113,8 @@ const ContactsPage = () => {
 
               <button
                 type="submit"
-                className={`small-button ${styles.formButton}`}>
+                className={`small-button ${styles.formButton}`}
+              >
                 Отправить
               </button>
             </form>

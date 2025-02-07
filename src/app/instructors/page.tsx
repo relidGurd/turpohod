@@ -1,29 +1,39 @@
 import InstructorCard from "@/components/InstructorCard/InstructorCard";
-import { wordpressCustom, wordpressUrl } from "../globalUrl";
-import styles from "./instructors.module.css";
-import Image from "next/image";
+import { wordpressCustom } from "../globalUrl";
 import ContactUs from "@/components/ContactUs/ContactUs";
 import UpcomingHikes from "@/components/UpcomingHikes/UpcomingHikes";
 import PageBanner from "@/components/PageBunner/PageBunner";
+import { notFound } from "next/navigation";
+import { Breadcrumb } from "antd";
+import Link from "next/link";
 async function getData() {
   const res = await fetch(`${wordpressCustom}/instructors`, {
     next: { revalidate: 100 },
   });
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    return alert("error");
+    notFound(); // Перенаправляет на 404
   }
-
   return res.json();
 }
 
 const InstructorsPage = async () => {
   const data = await getData();
+
+  const items = [
+    {
+      title: <Link href="/">На главную</Link>,
+    },
+    {
+      title: "Инструкторы",
+    },
+  ];
+
   return (
     <main>
       <PageBanner title={"Инструкторы"} />
       <section className="main-container">
+        <Breadcrumb style={{ margin: "1rem" }} items={items} />
         {data.instructors.map((el: any) => (
           <InstructorCard
             key={el.id}

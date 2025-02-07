@@ -20,7 +20,12 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
 
   return (
     <section className="main-container">
-      <SectionTitle title={"Ближайшие походы"} description={"llfflf"} />
+      <SectionTitle
+        title={"Ближайшие походы"}
+        description={
+          "Приглашаем вас присоединиться к нашим ближайшим походам и насладиться великолепием природы Ленинградской области! Мы подготовили для вас несколько увлекательных маршрутов, которые подойдут как для новичков, так и для опытных туристов."
+        }
+      />
       <div className={styles.stagesButtons}>
         <div
           onClick={() => swiperRef.current?.slidePrev()}

@@ -24,6 +24,8 @@
   width: 100%;
   height: auto;
   margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 1rem;
 }
 
 .postImage {
@@ -32,9 +34,16 @@
   object-fit: contain;
 }
 
+.postContent {
+  position: relative;
+  width: 100%;
+}
+
 .postContent img {
+  margin: 1rem 0;
   width: 100%;
   height: auto;
+  border-radius: 1rem;
 }
 
 .postContent p {
