@@ -20,7 +20,9 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
         <div>
           <ul className={styles.footerMenuList}>
             {menu.map((el: any, index: number) => (
-              <li key={index}>{<Link href={el.url}>{el.title}</Link>}</li>
+              <li className={styles.fLi} key={index}>
+                {<Link href={el.url}>{el.title}</Link>}
+              </li>
             ))}
           </ul>
           <div className={styles.footerContactsContainer}>
