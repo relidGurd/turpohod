@@ -2,7 +2,7 @@
 
 import styles from "./UpcomingHikes.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useRef } from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,13 +12,32 @@ import { Autoplay } from "swiper/modules";
 import ProductCard from "../ProductCard/ProductCard";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Link from "next/link";
+import LeftArrow from "@/icons/Left";
+import RightArrow from "@/icons/Right";
 
 const UpcomingHikes: React.FC<any> = ({ hikes }) => {
+  const swiperRef = useRef<any>(null);
+
   return (
     <section className="main-container">
       <SectionTitle title={"Ближайшие походы"} description={"llfflf"} />
+      <div className={styles.stagesButtons}>
+        <div
+          onClick={() => swiperRef.current?.slidePrev()}
+          className={styles.leftButton}
+        >
+          <LeftArrow className="icon" />
+        </div>
+        <div
+          onClick={() => swiperRef.current?.slideNext()}
+          className={styles.rightButton}
+        >
+          <RightArrow className="icon" />
+        </div>
+      </div>
       <div>
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           slidesPerView={1}
           spaceBetween={20}
           autoplay={{

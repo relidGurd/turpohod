@@ -1,3 +1,41 @@
 .productList {
   padding: 40px 0;
 }
+
+.stagesNavigations {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stagesButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.rightButton,
+.leftButton {
+  width: 35px;
+  height: 35px;
+  border: 1px solid transparent;
+  transition: 0.3s ease;
+}
+
+.rightButton {
+  margin-left: 0.5rem;
+}
+
+.rightButton:focus,
+.leftButton:focus {
+  border: 1px solid #777777d6;
+  border-radius: 10px;
+}
+
+.rightButton:hover,
+.leftButton:hover {
+  border: 1px solid #777777d6;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
