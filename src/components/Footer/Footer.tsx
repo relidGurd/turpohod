@@ -3,7 +3,6 @@ import Link from "next/link";
 import styles from "./footer.module.css";
 import Image from "next/image";
 const Footer: React.FC<any> = ({ menu, socials }) => {
-  console.log(socials);
   return (
     <footer className={styles.mainFooter}>
       <div className={`main-container`}>
@@ -32,7 +31,8 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
                   <li key={index} className={styles.socialsItem}>
                     <Link
                       href={el.contact_url}
-                      className={styles.footerContacts}>
+                      className={styles.footerContacts}
+                    >
                       <div className={styles.footerIconContacts}>
                         <Image
                           className={styles.svgInvert}

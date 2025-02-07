@@ -1,12 +1,13 @@
 import PageBanner from "@/components/PageBunner/PageBunner";
-import { wordpressUrl } from "../globalUrl";
+import { wordpressUrl } from "@/app/globalUrl";
 import NewsCard from "@/components/NewsCard/NewsCard";
 import styles from "./blog.module.css";
 import { notFound } from "next/navigation"; // Добавьте импорт
-import PaginationHukes from "@/components/Pagination/PaginationHukes";
 import PaginationPosts from "@/components/Pagination/PaginationPosts";
-async function getData() {
-  const res = await fetch(`${wordpressUrl}/posts?per_page=10`, {
+async function getData({ params }: { params: Promise<{ id: number }> }) {
+  const id = (await params).id;
+
+  const res = await fetch(`${wordpressUrl}/posts?per_page=10&page=${id}`, {
     next: { revalidate: 100 },
   });
 
@@ -21,8 +22,8 @@ async function getData() {
   return { posts, totalPages };
 }
 
-const BlogPage = async () => {
-  const { posts, totalPages } = await getData();
+const BlogPage = async ({ params }: { params: Promise<{ id: number }> }) => {
+  const { posts, totalPages } = await getData({ params });
   console.log(totalPages);
   return (
     <main>

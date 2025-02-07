@@ -35,10 +35,15 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
             clickable: true,
           }}
           modules={[Pagination]}
-          className={`mySwiper ${styles.productList}`}>
+          className={`mySwiper ${styles.productList}`}
+        >
           {hikes.map((el: any) => (
             <SwiperSlide key={el.id}>
-              <Link href={`/hike-detail/${el.slug}`}>
+              <Link
+                href={`/hike-detail/${
+                  el.slug || el.link.split("/product/")[1]
+                }`}
+              >
                 <ProductCard
                   image={el.image}
                   title={el.name}

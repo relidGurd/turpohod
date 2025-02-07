@@ -21,7 +21,7 @@ async function getData() {
 const InstructorsPage = async () => {
   const data = await getData();
 
-  console.log(data);
+  console.log(data.selected_products);
   return (
     <main>
       <PageBanner title={"Инструкторы"} />

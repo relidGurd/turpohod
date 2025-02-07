@@ -15,7 +15,7 @@ const NewsCard: React.FC<any> = ({ text, title, date, image, slug }) => {
   };
 
   return (
-    <Link href={`/blog/${slug}`}>
+    <Link href={`/blog-detail/${slug}`}>
       <div className={styles.NewsCard}>
         <div className={styles.newsImageContainer}>
           <div className={styles.arrowContainer}>

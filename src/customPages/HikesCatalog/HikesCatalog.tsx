@@ -6,8 +6,9 @@ import { DatePicker, ConfigProvider } from "antd";
 import { useState } from "react";
 import ruRU from "antd/locale/ru_RU";
 import "dayjs/locale/ru";
+import PaginationHukes from "@/components/Pagination/PaginationHukes";
 
-const HikesCatalog: React.FC<any> = ({ data }: any) => {
+const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const { RangePicker } = DatePicker;
   const [date, setDate] = useState<any>(undefined);
   const onChangeP = (value: any, dateString: any) => {
@@ -30,6 +31,7 @@ const HikesCatalog: React.FC<any> = ({ data }: any) => {
         {data.map((el: any) => (
           <Link href={`/hike-detail/${el.slug}`} key={el.id}>
             <ProductCard
+              title={el.name}
               image={el.images[0].src}
               data={el.hike_date}
               price={el.price}
@@ -37,6 +39,7 @@ const HikesCatalog: React.FC<any> = ({ data }: any) => {
           </Link>
         ))}
       </ul>
+      <PaginationHukes hikes_pages={pagination} />
     </section>
   );
 };

@@ -6,7 +6,7 @@ import PageBanner from "@/components/PageBunner/PageBunner";
 import { notFound } from "next/navigation"; // Добавьте импорт
 
 import HikesCatalog from "@/customPages/HikesCatalog/HikesCatalog";
-const API_URL = `${wordpressUrlWC}/products`;
+const API_URL = `${wordpressUrlWC}/products?per_page=9`;
 
 async function getProducts() {
   const oauth = new OAuth({
@@ -41,14 +41,18 @@ async function getProducts() {
     notFound(); // Перенаправляет на 404
   }
 
-  return res.json();
+  const products = await res.json();
+  const totalPages = res.headers.get("X-WP-TotalPages");
+
+  return { products, totalPages };
 }
 const HikesPage = async () => {
-  const data = await getProducts();
+  const { products, totalPages } = await getProducts();
+
   return (
     <main>
       <PageBanner title="Походы" />
-      <HikesCatalog data={data} />
+      <HikesCatalog data={products} pagination={totalPages} />
       <section className={`main-container`}>
         <ContactUs />
       </section>

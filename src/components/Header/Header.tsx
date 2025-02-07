@@ -42,7 +42,8 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           initial={{ x: "100%" }}
           animate={{ x: open ? 0 : "100%" }}
           transition={{ type: "spring", stiffness: 150 }}
-          className={styles.menuListMob}>
+          className={styles.menuListMob}
+        >
           <div className={styles.openedMobileMainSection}>
             <div className={styles.Logo}>
               {" "}
@@ -61,8 +62,8 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           </div>
           <nav>
             <ul className={styles.mobileLinks}>
-              {menu.map((el: any) => (
-                <li>
+              {menu.map((el: any, index: number) => (
+                <li key={index}>
                   <Link href={el.url} onClick={() => handleClose()}>
                     {el.title}
                   </Link>
