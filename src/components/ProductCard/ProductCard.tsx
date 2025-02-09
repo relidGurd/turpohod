@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
 
-const ProductCard: React.FC<any> = ({ image, title, date, price, place }) => {
+const ProductCard: React.FC<any> = ({ image, title, dates, price, place }) => {
   return (
     <div className={styles.cardContainer}>
       <div>
@@ -29,7 +29,7 @@ const ProductCard: React.FC<any> = ({ image, title, date, price, place }) => {
                 alt="Иконка календарь"
               />
             </div>
-            <span>Дата: {date}</span>
+            <span>Даты: {dates}</span>
           </div>
           <div className={styles.cardInfoItem}>
             <div className={styles.cardIcon}>
@@ -40,7 +40,7 @@ const ProductCard: React.FC<any> = ({ image, title, date, price, place }) => {
                 alt="Иконка карта"
               />
             </div>
-            <span>{place ? place[0] : "Неизвестно"}</span>
+            <span>{place ? place : "Неизвестно"}</span>
           </div>
         </div>
         <div className={`${styles.cardInfo} ${styles.cardPriceSection}`}>

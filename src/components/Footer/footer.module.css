@@ -28,6 +28,8 @@
   align-items: center;
   font-size: 20px;
   padding: 25px 0;
+
+  border-bottom: 1px solid white;
 }
 
 .fLi {
@@ -36,7 +38,8 @@
 .footerContactsList {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 .footerContactsContainer {
@@ -100,6 +103,10 @@
 
 @media screen and (max-width: 950px) {
   .footerContactsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .footerFormContainer {
     grid-template-columns: 1fr;
   }
 }

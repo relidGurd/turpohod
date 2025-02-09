@@ -15,26 +15,13 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
               категории снаряжения, такие как одежда, обувь, рюкзак, еда и
               вода...
             </p>
-          </div>
-        </div>
-        <div>
-          <ul className={styles.footerMenuList}>
-            {menu.map((el: any, index: number) => (
-              <li className={styles.fLi} key={index}>
-                {<Link href={el.url}>{el.title}</Link>}
-              </li>
-            ))}
-          </ul>
-          <div className={styles.footerContactsContainer}>
-            <div className={styles.footerContactsTitle}>Контакты</div>
             <div className={styles.footerContactsList}>
               <ul className={styles.socialsContainer}>
                 {socials.header_contacts.map((el: any, index: number) => (
                   <li key={index} className={styles.socialsItem}>
                     <Link
                       href={el.contact_url}
-                      className={styles.footerContacts}
-                    >
+                      className={styles.footerContacts}>
                       <div className={styles.footerIconContacts}>
                         <Image
                           className={styles.svgInvert}
@@ -66,6 +53,15 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
               </ul>
             </div>
           </div>
+        </div>
+        <div>
+          <ul className={styles.footerMenuList}>
+            {menu.map((el: any, index: number) => (
+              <li className={styles.fLi} key={index}>
+                {<Link href={el.url}>{el.title}</Link>}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className={styles.footerLogoSection}>
           <div className={styles.footerLogo}>

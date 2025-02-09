@@ -16,6 +16,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     setDate(dateString);
   };
 
+  console.log(data);
+
   return (
     <section className={`main-container`}>
       <Breadcrumb
@@ -48,8 +50,9 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               <ProductCard
                 title={el.name}
                 image={el.images[0].src}
-                data={el.hike_date}
                 price={el.price}
+                place={el.hike_address}
+                dates={el.hike_dates}
               />
             </Link>
           </li>
