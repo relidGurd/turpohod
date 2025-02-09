@@ -6,17 +6,19 @@ import styles from "./ProductCard.module.css";
 const ProductCard: React.FC<any> = ({ image, title, date, price, place }) => {
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.cardImageContainer}>
-        <Image
-          className={styles.cardImage}
-          src={image ? image : "/example.jpg"}
-          width={1000}
-          height={1000}
-          alt=""
-        />
+      <div>
+        <div className={styles.cardImageContainer}>
+          <Image
+            className={styles.cardImage}
+            src={image ? image : "/example.jpg"}
+            width={1000}
+            height={1000}
+            alt=""
+          />
+        </div>
+        <div className={styles.cardTitle}>{title}</div>
       </div>
       <div>
-        <div className={styles.cardTitle}>{title}</div>
         <div className={styles.cardInfo}>
           <div className={styles.cardInfoItem}>
             <div className={styles.cardIcon}>
@@ -41,12 +43,16 @@ const ProductCard: React.FC<any> = ({ image, title, date, price, place }) => {
             <span>{place ? place[0] : "Неизвестно"}</span>
           </div>
         </div>
-      </div>
-      <div className={`${styles.cardInfo} ${styles.cardPriceSection}`}>
-        <div className={styles.productPrice}>
-          {price ? price : "По запросу"} руб.
+        <div className={`${styles.cardInfo} ${styles.cardPriceSection}`}>
+          <div className={styles.productPrice}>
+            {price ? (
+              `${price} руб.`
+            ) : (
+              <span style={{ color: "red" }}>Нет мест</span>
+            )}
+          </div>
+          <button className={`small-button`}>Подробнее</button>
         </div>
-        <button className={`small-button`}>Подробнее</button>
       </div>
     </div>
   );

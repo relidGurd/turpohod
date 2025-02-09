@@ -22,9 +22,10 @@ const ProductPage: React.FC<any> = ({
   description,
   smallText,
   category,
-  date,
+  dates,
   price,
   images,
+  tabGallery,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -45,7 +46,7 @@ const ProductPage: React.FC<any> = ({
     },
     {
       title: "Галерея",
-      content: hasMounted ? <ProductGallery images={images} /> : "",
+      content: hasMounted ? <ProductGallery images={tabGallery} /> : "",
     },
     { title: "Комментарии", content: hasMounted ? <ReviewItem /> : "" },
   ];
@@ -72,23 +73,25 @@ const ProductPage: React.FC<any> = ({
         ]}
       />
       <div className={styles.cardContainer}>
-        <div style={{ width: "100%" }}>
-          <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-            {images.map((el: any) => (
-              <SwiperSlide key={el.id}>
-                <div className={styles.imageContainer}>
-                  <Image
-                    className={styles.imageContainerIm}
-                    width={1000}
-                    height={1000}
-                    src={el.src}
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <Swiper
+          style={{ width: "100%" }}
+          pagination={true}
+          modules={[Pagination]}
+          className="mySwiper">
+          {images.map((el: any) => (
+            <SwiperSlide style={{ width: "100%" }} key={el.id}>
+              <div className={styles.imageContainer}>
+                <Image
+                  className={styles.imageContainerIm}
+                  width={1000}
+                  height={1000}
+                  src={el.src}
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <div className={styles.informCard}>
           <h1 className={`${styles.productTitle} main-title`}>{title}</h1>
           <div className={styles.productInfo}>
@@ -96,8 +99,12 @@ const ProductPage: React.FC<any> = ({
               <span>Категория: {category[0].name}</span>
             </div>
             <div>
-              <span>Дата: </span>
-              {date}
+              <span>Даты похода: </span>
+              {dates}
+            </div>
+            <div>
+              <span>Инструктор: </span>
+              <Link href={`/instructors`}>Ковязин Виктор Петрович</Link>
             </div>
           </div>
           {smallText ? (
@@ -132,17 +139,28 @@ const ProductPage: React.FC<any> = ({
         <Tabs
           value={value}
           onChange={handleChange}
-          variant={isMobile ? "scrollable" : "fullWidth"} // Растягивает вкладки по всей ширине
+          variant={isMobile ? "scrollable" : "fullWidth"}
           aria-label="customized tabs"
           sx={{
             display: "flex",
             justifyContent: "center",
             "& .MuiTabs-flexContainer": {
-              gap: "20px", // Расстояние между вкладками
+              gap: "20px",
               padding: "1rem 0",
+              // Медиазапрос для отображения кнопок в колонку на экранах меньше 640px
+              "@media (max-width: 640px)": {
+                flexDirection: "column", // Размещение вкладок в колонку
+                alignItems: "center", // Выравнивание по центру
+                width: "100%",
+              },
+            },
+            "& .MuiButtonBase-root": {
+              "@media (max-width: 640px)": {
+                width: "100%",
+              },
             },
             "& .MuiTab-root": {
-              flex: 1, // Равномерное распределение
+              flex: 1,
               textTransform: "none",
               fontSize: "16px",
               fontWeight: "bold",
@@ -160,6 +178,9 @@ const ProductPage: React.FC<any> = ({
               "&:hover": {
                 backgroundColor: "#fef6ef",
               },
+              "@media (max-width: 640px)": {
+                fontSize: "12px", // Уменьшение шрифта на маленьких экранах
+              },
             },
             "& .MuiTabs-indicator": {
               display: "none", // Убираем стандартный индикатор
@@ -167,15 +188,13 @@ const ProductPage: React.FC<any> = ({
             "& li::marker": {
               display: "none", // Убираем маркер
             },
-          }}
-        >
+          }}>
           {tabData.map((tab) => (
             <Tab key={tab.title} label={tab.title} value={tab.title} />
           ))}
         </Tabs>
         <Box
-          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}
-        >
+          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}>
           <div>{tabData.find((tab) => tab.title === value)?.content}</div>
         </Box>
       </Box>

@@ -63,6 +63,8 @@ export default async function HikesSinglePage({
 }) {
   const product = await getProductBySlug({ params });
 
+  console.log(product);
+
   return (
     <main className="padding-top-content ">
       <ProductPage
@@ -72,6 +74,9 @@ export default async function HikesSinglePage({
         price={product.price}
         category={product.categories}
         images={product.images}
+        ardess={product.hike_adress}
+        tabGallery={product.hike_gallery}
+        dates={product.hike_dates}
       />
       <section className="main-container">
         <ContactUs />

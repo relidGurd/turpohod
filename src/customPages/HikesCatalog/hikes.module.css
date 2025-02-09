@@ -1,8 +1,14 @@
 .hikesList {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
   gap: 20px;
+  align-items: stretch; /* Растягиваем карточки по высоте */
+}
+
+.hikeItem {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .filtersContainer {

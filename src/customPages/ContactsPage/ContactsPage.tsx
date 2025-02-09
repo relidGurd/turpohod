@@ -11,7 +11,6 @@ import Link from "next/link";
 // Схема валидации
 const validationSchema = Yup.object({
   name: Yup.string().required("Введите ваше имя"),
-  email: Yup.string().email("Некорректный email").required("Введите ваш email"),
   phoneNumber: Yup.string().required("Введите ваш телефон"),
 });
 
@@ -19,7 +18,6 @@ const ContactsPage = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      email: "",
       phoneNumber: "",
     },
     validationSchema, // Передаем схему валидации
@@ -74,23 +72,6 @@ const ContactsPage = () => {
               </div>
 
               <div className={styles.formInputItem}>
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className={styles.formInput}
-                  placeholder="example@mail.com"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <div className={styles.errorInput}>{formik.errors.email}</div>
-                ) : null}
-              </div>
-
-              <div className={styles.formInputItem}>
                 <label htmlFor="phoneNumber">Телефон</label>
                 <IMaskInput
                   id="phoneNumber"
@@ -101,6 +82,7 @@ const ContactsPage = () => {
                   onAccept={(value) =>
                     formik.setFieldValue("phoneNumber", value)
                   }
+                  onBlur={() => formik.setFieldTouched("phoneNumber", true)} // Добавляем onBlur
                   className={styles.formInput}
                   placeholder="+7 ___-___-__-__"
                 />
@@ -113,8 +95,7 @@ const ContactsPage = () => {
 
               <button
                 type="submit"
-                className={`small-button ${styles.formButton}`}
-              >
+                className={`small-button ${styles.formButton}`}>
                 Отправить
               </button>
             </form>

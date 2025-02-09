@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Slider.module.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import Popup from "@/layouts/Popup/Popup";
 import CForm from "../CForm/CForm";
@@ -12,7 +12,14 @@ import CForm from "../CForm/CForm";
 const Slider: React.FC<any> = ({ slides }) => {
   return (
     <section>
-      <Swiper navigation={true} modules={[Pagination]} className="mySwiper">
+      <Swiper
+        navigation={true}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+        modules={[Pagination, Autoplay]}
+        className="mySwiper">
         {slides.map((el: any, index: number) => (
           <SwiperSlide key={index} style={{ height: "auto" }}>
             <div className={styles.slideContaiener}>
@@ -35,8 +42,7 @@ const Slider: React.FC<any> = ({ slides }) => {
                       <Popup
                         elem={
                           <button className={`slider-button`}>Подробнее</button>
-                        }
-                      >
+                        }>
                         <CForm />
                       </Popup>
                     </div>

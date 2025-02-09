@@ -5,7 +5,6 @@ import styles from "./CForm.module.css";
 // Схема валидации
 const validationSchema = Yup.object({
   name: Yup.string().required("Введите ваше имя"),
-  email: Yup.string().email("Некорректный email").required("Введите ваш email"),
   phoneNumber: Yup.string().required("Введите ваш телефон"),
 });
 
@@ -13,7 +12,7 @@ const CForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      email: "",
+
       phoneNumber: "",
     },
     validationSchema, // Передаем схему валидации
@@ -48,7 +47,7 @@ const CForm = () => {
           ) : null}
         </div>
 
-        <div className={styles.formInputItem}>
+        {/* <div className={styles.formInputItem}>
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -63,7 +62,7 @@ const CForm = () => {
           {formik.touched.email && formik.errors.email ? (
             <div className={styles.errorInput}>{formik.errors.email}</div>
           ) : null}
-        </div>
+        </div> */}
 
         <div className={styles.formInputItem}>
           <label htmlFor="phoneNumber">Телефон</label>
@@ -74,6 +73,7 @@ const CForm = () => {
             unmask={true}
             value={formik.values.phoneNumber}
             onAccept={(value) => formik.setFieldValue("phoneNumber", value)}
+            onBlur={() => formik.setFieldTouched("phoneNumber", true)} // Добавляем onBlur
             className={styles.formInput}
             placeholder="+7 ___-___-__-__"
           />

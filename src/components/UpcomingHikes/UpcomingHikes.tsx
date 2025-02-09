@@ -29,19 +29,18 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
       <div className={styles.stagesButtons}>
         <div
           onClick={() => swiperRef.current?.slidePrev()}
-          className={styles.leftButton}
-        >
+          className={styles.leftButton}>
           <LeftArrow className="icon" />
         </div>
         <div
           onClick={() => swiperRef.current?.slideNext()}
-          className={styles.rightButton}
-        >
+          className={styles.rightButton}>
           <RightArrow className="icon" />
         </div>
       </div>
       <div>
         <Swiper
+          modules={[Autoplay]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           slidesPerView={1}
           spaceBetween={20}
@@ -63,15 +62,13 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
           pagination={{
             clickable: true,
           }}
-          className={`mySwiper ${styles.productList}`}
-        >
+          className={`mySwiper ${styles.productList}`}>
           {hikes.map((el: any) => (
             <SwiperSlide key={el.id}>
               <Link
                 href={`/hike-detail/${
                   el.slug || el.link.split("/product/")[1]
-                }`}
-              >
+                }`}>
                 <ProductCard
                   image={el.image}
                   title={el.name}
@@ -86,8 +83,7 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
         <Link
           style={{ cursor: "pointer" }}
           href={"/hike"}
-          className={`primaryButtonWhite`}
-        >
+          className={`primaryButtonWhite`}>
           Смотреть все
         </Link>
       </div>

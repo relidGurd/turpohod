@@ -32,23 +32,27 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
       <div className={styles.filtersContainer}>
         <span className={styles.datePickName}>Выберите даты похода</span>
         <div>
-          <RangePicker
+          <DatePicker
             onChange={onChangeP}
             onOk={(value: any) => setDate(value)}
-            placeholder={["Дата начала", "Дата окончания"]}
+            placeholder={"Выберите дату похода"}
           />
         </div>
       </div>
       <ul className={styles.hikesList}>
         {data.map((el: any) => (
-          <Link href={`/hike-detail/${el.slug}`} key={el.id}>
-            <ProductCard
-              title={el.name}
-              image={el.images[0].src}
-              data={el.hike_date}
-              price={el.price}
-            />
-          </Link>
+          <li key={el.id} className={styles.hikeItem}>
+            <Link
+              style={{ display: "contents" }}
+              href={`/hike-detail/${el.slug}`}>
+              <ProductCard
+                title={el.name}
+                image={el.images[0].src}
+                data={el.hike_date}
+                price={el.price}
+              />
+            </Link>
+          </li>
         ))}
       </ul>
       <PaginationHukes hikes_pages={pagination} />

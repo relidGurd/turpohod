@@ -3,6 +3,10 @@
   border-radius: 10px;
   border: 1px solid var(--gray-elements);
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Равномерное распределение */
+  height: 100%;
 }
 
 .cardImageContainer {
