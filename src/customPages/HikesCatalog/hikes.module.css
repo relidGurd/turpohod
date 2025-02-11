@@ -24,6 +24,12 @@
   margin-bottom: 1rem;
 }
 
+.falseLoad {
+  grid-column: span 3;
+  width: 100%;
+  text-align: center;
+}
+
 @media screen and (max-width: 1020px) {
   .hikesList {
     display: grid;

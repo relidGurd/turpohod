@@ -98,6 +98,26 @@ section:not(:last-child) {
   transition: 0.3s ease;
 }
 
+.small-button-white {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: var(--primary-green);
+  font-weight: 700;
+  -webkit-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  -moz-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  border: 1px solid transparent;
+  transition: 0.3s ease;
+}
+
+.small-button-white:hover {
+  border: 1px solid var(--primary-green);
+  transition: 0.3s ease;
+}
+
 @media (max-width: 950px) {
   .main-title {
     font-size: 32px;

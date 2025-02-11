@@ -1,0 +1,54 @@
+.formBlock {
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  padding: 45px 35px;
+  max-width: 550px;
+}
+
+.myForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputItem {
+  margin-top: 1rem;
+}
+
+.formInputItem label {
+  display: block;
+}
+
+.formInput {
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.formButton {
+  margin-top: 1rem;
+  padding: 1rem 0;
+}
+
+.errorInput {
+  color: rgb(179, 1, 1);
+}
+
+.formTitle {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+}
+
+.formText {
+  margin-bottom: 1rem;
+}
+
+.formTextarea {
+  min-width: 100%;
+  max-height: 350px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}

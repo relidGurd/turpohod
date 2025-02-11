@@ -30,6 +30,10 @@
   .galleryGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .bigImageContainer {
+    width: 100vw;
+  }
 }
 
 @media screen and (max-width: 500px) {

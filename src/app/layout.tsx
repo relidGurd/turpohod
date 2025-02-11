@@ -7,6 +7,7 @@ import Footer from "@/components/Footer/Footer";
 import { Suspense } from "react";
 import PreloaderC from "@/components/Preloader/Preloader";
 import { notFound } from "next/navigation"; // Добавьте импорт
+import "@ant-design/v5-patch-for-react-19";
 
 const manrope = Manrope({
   subsets: ["cyrillic"],

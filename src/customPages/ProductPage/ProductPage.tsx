@@ -16,6 +16,7 @@ import CForm from "@/components/CForm/CForm";
 import Image from "next/image";
 import ProductGallery from "@/components/ProductGallery/ProductGallery";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
+import CommentForm from "@/components/CommentForm/CommentForm";
 
 const ProductPage: React.FC<any> = ({
   title,
@@ -127,12 +128,24 @@ const ProductPage: React.FC<any> = ({
             )}
           </div>
           {price ? (
-            <button className="small-button">Бронировать</button>
+            <Popup elem={<button className="small-button">Бронировать</button>}>
+              <CForm />
+            </Popup>
           ) : (
             <Popup elem={<button className="small-button">Узнать дату</button>}>
               <CForm />
             </Popup>
           )}
+          <Popup
+            elem={
+              <button
+                style={{ marginTop: "1rem" }}
+                className="small-button-white">
+                Оставить отзыв
+              </button>
+            }>
+            <CommentForm />
+          </Popup>
         </div>
       </div>
       <Box sx={{ width: "100%", borderRadius: 2 }}>
