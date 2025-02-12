@@ -23,7 +23,7 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const API_URL = `${wordpressUrlWC}/products`;
+  const API_URL = `https://pohod-spb.ru/wp-json/wc/v3/products`;
 
   const onChangeP = (value: any, dateString: any) => {
     setDate(dateString);
@@ -127,7 +127,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               <li key={el.id} className={styles.hikeItem}>
                 <Link
                   style={{ display: "contents" }}
-                  href={`/hike-detail/${el.slug}`}>
+                  href={`/hike-detail/${el.slug}`}
+                >
                   <ProductCard
                     title={el.name}
                     image={el.images[0]?.src}
@@ -147,7 +148,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
                   window.location.reload();
                 }}
                 style={{ marginTop: "1rem" }}
-                variant="contained">
+                variant="contained"
+              >
                 Смотреть все походы
               </Button>
             </div>
