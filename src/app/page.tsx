@@ -7,6 +7,7 @@ import Advantages from "@/components/Advantages/Advantages";
 import MainRevies from "@/components/MainReviews/MainReviews";
 import { notFound } from "next/navigation"; // Для редиректа на 404
 import { wordpressUrl } from "./globalUrl";
+import StickyButton from "@/components/StickyButton/StickyButton";
 
 async function getData() {
   const res = await fetch(`http://pohod-spb.ru/wp-json/custom/v1/glavnaya`, {
@@ -30,7 +31,6 @@ export default async function Home() {
       <Advantages features={data.features} />
       <NewsSection news={data.news} />
       <MainRevies reviews={data.reviews} />
-      <section></section>
     </main>
   );
 }

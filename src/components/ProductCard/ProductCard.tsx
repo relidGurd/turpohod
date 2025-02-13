@@ -19,7 +19,7 @@ const ProductCard: React.FC<any> = ({ image, title, dates, price, place }) => {
         <div className={styles.cardTitle}>{title}</div>
       </div>
       <div>
-        <div className={styles.cardInfo}>
+        <div className={styles.cardMainInfo}>
           <div className={styles.cardInfoItem}>
             <div className={styles.cardIcon}>
               <Image
@@ -40,7 +40,18 @@ const ProductCard: React.FC<any> = ({ image, title, dates, price, place }) => {
                 alt="Иконка карта"
               />
             </div>
-            <span>{place ? place : "Неизвестно"}</span>
+            <span>Направление: {place ? place : "Неизвестно"}</span>
+          </div>
+          <div className={styles.cardInfoItem}>
+            <div className={styles.cardIcon}>
+              <Image
+                src={"/path.svg"}
+                width={25}
+                height={25}
+                alt="Иконка карта"
+              />
+            </div>
+            <span>Протяженность: {place ? `${place} км.` : "Неизвестно"}</span>
           </div>
         </div>
         <div className={`${styles.cardInfo} ${styles.cardPriceSection}`}>

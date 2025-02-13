@@ -1,0 +1,34 @@
+.stickyContainer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  bottom: 20;
+  right: 20;
+  z-index: 102;
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-green);
+  border-radius: 100%;
+  border: 2px solid var(--gray-elements);
+  opacity: 25%;
+  padding: 1rem;
+  transition: 0.3s ease;
+}
+
+.stickyItem {
+  width: 100%;
+  height: 100%;
+}
+
+.stickyContainer:hover {
+  opacity: 100%;
+  transition: 0.3s ease;
+}
+
+@media screen and (max-width: 1000px) {
+  .stickyContainer {
+    opacity: 100%;
+  }
+}

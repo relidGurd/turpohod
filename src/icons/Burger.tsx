@@ -1,17 +1,14 @@
 const Burger = () => {
   return (
     <svg
-      width="50px"
-      height="50px"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width="35px"
+      height="35px"
+      viewBox="0 0 24 24"
     >
       <path
-        d="M5 8H13.75M5 12H19M10.25 16L19 16"
-        stroke="#464455"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fill="currentColor"
+        d="M4 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1m0 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1m1 5a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2z"
       />
     </svg>
   );

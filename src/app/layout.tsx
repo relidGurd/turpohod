@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import PreloaderC from "@/components/Preloader/Preloader";
 import { notFound } from "next/navigation"; // Добавьте импорт
 import "@ant-design/v5-patch-for-react-19";
+import StickyButton from "@/components/StickyButton/StickyButton";
 
 const manrope = Manrope({
   subsets: ["cyrillic"],
@@ -44,6 +45,7 @@ export default async function RootLayout({
         <Suspense fallback={<PreloaderC />}>
           <Header menu={data[0].menu_items} socials={data[0].customFields} />
           {children}
+          <StickyButton />
           <Footer menu={data[0].menu_items} socials={data[0].customFields} />
         </Suspense>
       </body>

@@ -2,17 +2,16 @@
 import ProductCard from "@/components/ProductCard/ProductCard";
 import styles from "./hikes.module.css";
 import Link from "next/link";
-import { DatePicker, ConfigProvider } from "antd";
+import { DatePicker } from "antd";
 import { useState } from "react";
 import PaginationHukes from "@/components/Pagination/PaginationHukes";
 import { Breadcrumb } from "antd";
 import { Button } from "@mui/material";
 import OAuth from "oauth-1.0a";
 import crypto from "crypto";
-import { wordpressUrlWC } from "@/app/globalUrl";
 import { notFound } from "next/navigation";
 import dayjs from "dayjs";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material"; // Индикатор загрузки
 
 const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
@@ -21,7 +20,6 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const [filteredData, setFiltredData] = useState(data);
   const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const API_URL = `https://pohod-spb.ru/wp-json/wc/v3/products`;
 
@@ -34,15 +32,6 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     setFiltredData([]); // Очищаем старые данные, чтобы избежать мерцания
 
     const formattedDate = date ? dayjs(date).format("DD.MM.YYYY") : "";
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (formattedDate) {
-      params.set("date", formattedDate);
-    } else {
-      params.delete("date");
-    }
-
-    router.push(`/hike?${params.toString()}`, { scroll: false });
 
     try {
       const oauth = new OAuth({
@@ -72,7 +61,6 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
       }
 
       const products = await res.json();
-      const totalPages = res.headers.get("X-WP-TotalPages");
 
       const filteredByIds = products.filter(
         (prod: any) => prod.hike_filter_date === formattedDate
