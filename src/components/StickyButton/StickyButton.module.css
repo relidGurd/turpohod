@@ -29,6 +29,6 @@
 
 @media screen and (max-width: 1000px) {
   .stickyContainer {
-    opacity: 100%;
+    opacity: 1;
   }
 }
