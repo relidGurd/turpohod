@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
-const MainRevies: React.FC<any> = () => {
+const MainRevies: React.FC<any> = ({ reviews }) => {
   return (
     <section className="main-container">
       <SectionTitle
@@ -36,15 +36,11 @@ const MainRevies: React.FC<any> = () => {
         modules={[Pagination]}
         className={`mySwiper ${styles.productList}`}
       >
-        <SwiperSlide>
-          <ReviewItem />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ReviewItem />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ReviewItem />
-        </SwiperSlide>
+        {reviews.map((el: any) => (
+          <SwiperSlide key={el.id}>
+            <ReviewItem review={el} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import styles from "./CommentForm.module.css";
-import { wordpressUrlWC } from "@/app/globalUrl";
+import { wordpressUrlWC, basicUrl } from "@/app/globalUrl";
 
-const API_URL = `https://pohod-spb.ru/wp-json/wp/v2/comments`;
+const API_URL = `https://pohod-spb.ru/wp-json/wc/v3/products/reviews?consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558`;
 
 // Валидация формы
 const validationSchema = Yup.object({
@@ -14,6 +14,7 @@ const validationSchema = Yup.object({
     .email("Введите корректный email")
     .required("Введите email"),
   review: Yup.string()
+    .matches(/^[^<>]+$/, "Запрещено использовать теги HTML")
     .required("Введите отзыв")
     .min(10, "Отзыв должен быть не менее 10 символов"),
 });
@@ -34,10 +35,10 @@ const CommentForm: React.FC<any> = ({ productId }) => {
       setMessage("");
 
       const reviewData = {
-        post: productId, // ID товара
-        author_name: values.name, // Имя автора
-        author_email: values.email, // Email автора
-        content: values.review, // Текст отзыва
+        product_id: productId, // ID товара
+        reviewer: values.name, // Имя автора
+        reviewer_email: values.email, // Email автора
+        review: values.review, // Текст отзыва
         status: "hold", // Статус комментария
       };
 

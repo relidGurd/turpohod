@@ -17,8 +17,12 @@ import Image from "next/image";
 import ProductGallery from "@/components/ProductGallery/ProductGallery";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
 import CommentForm from "@/components/CommentForm/CommentForm";
+import axios from "axios";
+import OAuth from "oauth-1.0a";
+import crypto from "crypto";
 
 const ProductPage: React.FC<any> = ({
+  id,
   title,
   description,
   smallText,
@@ -29,13 +33,36 @@ const ProductPage: React.FC<any> = ({
   tabGallery,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
-  // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [hasMounted, setHasMounted] = useState(false);
+
+  const [reviews, setReviews] = useState<any>([]);
+
+  const API_URL = `https://pohod-spb.ru//wp-json/wc/v3/products/reviews?product=${id}&consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558`;
+
+  const request_data = {
+    url: API_URL,
+    method: "GET",
+  };
 
   useEffect(() => {
     setHasMounted(true);
-  }, []);
 
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        const reviews = response.data;
+        console.log(reviews);
+        setReviews(reviews);
+      } catch (error: any) {
+        console.error(
+          "Ошибка при получении отзывов:",
+          error.response?.data || error.message
+        );
+      }
+    };
+
+    fetchReviews();
+  }, []);
   const tabData = [
     {
       title: "О писание похода",
@@ -49,7 +76,18 @@ const ProductPage: React.FC<any> = ({
       title: "Галерея",
       content: hasMounted ? <ProductGallery images={tabGallery} /> : "",
     },
-    { title: "Комментарии", content: hasMounted ? <ReviewItem /> : "" },
+    {
+      title: "Комментарии",
+      content: hasMounted ? (
+        <div className={styles.reviewsContainer}>
+          {reviews.map((reviewI: any) => (
+            <ReviewItem key={reviewI.id} review={reviewI} />
+          ))}
+        </div>
+      ) : (
+        ""
+      ),
+    },
   ];
 
   const [value, setValue] = useState(tabData[0].title);
@@ -78,7 +116,8 @@ const ProductPage: React.FC<any> = ({
           style={{ width: "100%" }}
           pagination={true}
           modules={[Pagination]}
-          className="mySwiper">
+          className="mySwiper"
+        >
           {images.map((el: any) => (
             <SwiperSlide style={{ width: "100%" }} key={el.id}>
               <div className={styles.imageContainer}>
@@ -140,11 +179,13 @@ const ProductPage: React.FC<any> = ({
             elem={
               <button
                 style={{ marginTop: "1rem" }}
-                className="small-button-white">
+                className="small-button-white"
+              >
                 Оставить отзыв
               </button>
-            }>
-            <CommentForm />
+            }
+          >
+            <CommentForm productId={id} />
           </Popup>
         </div>
       </div>
@@ -201,13 +242,15 @@ const ProductPage: React.FC<any> = ({
             "& li::marker": {
               display: "none", // Убираем маркер
             },
-          }}>
+          }}
+        >
           {tabData.map((tab) => (
             <Tab key={tab.title} label={tab.title} value={tab.title} />
           ))}
         </Tabs>
         <Box
-          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}>
+          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}
+        >
           <div>{tabData.find((tab) => tab.title === value)?.content}</div>
         </Box>
       </Box>

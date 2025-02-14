@@ -68,6 +68,7 @@ export default async function HikesSinglePage({
   return (
     <main className="padding-top-content ">
       <ProductPage
+        id={product.id}
         title={product.name}
         description={product.description}
         smallText={product.short_description}
