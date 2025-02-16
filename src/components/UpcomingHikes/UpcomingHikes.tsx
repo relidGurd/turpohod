@@ -17,7 +17,7 @@ import RightArrow from "@/icons/Right";
 
 const UpcomingHikes: React.FC<any> = ({ hikes }) => {
   const swiperRef = useRef<any>(null);
-
+  console.log(hikes);
   return (
     <section className="main-container">
       <SectionTitle
@@ -71,7 +71,7 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
                 }`}>
                 <ProductCard
                   image={el.image}
-                  title={el.name}
+                  title={el.name || el.title}
                   price={el.price}
                 />
               </Link>

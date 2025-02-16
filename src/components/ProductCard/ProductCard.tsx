@@ -3,7 +3,14 @@
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
 
-const ProductCard: React.FC<any> = ({ image, title, dates, price, place }) => {
+const ProductCard: React.FC<any> = ({
+  image,
+  title,
+  dates,
+  price,
+  place,
+  hikePath,
+}) => {
   return (
     <div className={styles.cardContainer}>
       <div>
@@ -51,7 +58,9 @@ const ProductCard: React.FC<any> = ({ image, title, dates, price, place }) => {
                 alt="Иконка карта"
               />
             </div>
-            <span>Протяженность: {place ? `${place} км.` : "Неизвестно"}</span>
+            <span>
+              Протяженность: {hikePath ? `${hikePath} км.` : "Неизвестно"}
+            </span>
           </div>
         </div>
         <div className={`${styles.cardInfo} ${styles.cardPriceSection}`}>

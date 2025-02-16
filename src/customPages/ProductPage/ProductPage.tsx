@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import styles from "./ProductPage.module.css";
-import { Box, Tabs, Tab, Typography, useMediaQuery } from "@mui/material";
+import { Box, Tabs, Tab, useMediaQuery } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -18,8 +18,6 @@ import ProductGallery from "@/components/ProductGallery/ProductGallery";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import axios from "axios";
-import OAuth from "oauth-1.0a";
-import crypto from "crypto";
 
 const ProductPage: React.FC<any> = ({
   id,
@@ -31,6 +29,9 @@ const ProductPage: React.FC<any> = ({
   price,
   images,
   tabGallery,
+  instructorName,
+  instructorLink,
+  hikePath,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const [hasMounted, setHasMounted] = useState(false);
@@ -38,11 +39,6 @@ const ProductPage: React.FC<any> = ({
   const [reviews, setReviews] = useState<any>([]);
 
   const API_URL = `https://pohod-spb.ru//wp-json/wc/v3/products/reviews?product=${id}&consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558`;
-
-  const request_data = {
-    url: API_URL,
-    method: "GET",
-  };
 
   useEffect(() => {
     setHasMounted(true);
@@ -116,8 +112,7 @@ const ProductPage: React.FC<any> = ({
           style={{ width: "100%" }}
           pagination={true}
           modules={[Pagination]}
-          className="mySwiper"
-        >
+          className="mySwiper">
           {images.map((el: any) => (
             <SwiperSlide style={{ width: "100%" }} key={el.id}>
               <div className={styles.imageContainer}>
@@ -144,7 +139,13 @@ const ProductPage: React.FC<any> = ({
             </div>
             <div>
               <span>Инструктор: </span>
-              <Link href={`/instructors`}>Ковязин Виктор Петрович</Link>
+              <Link href={`/instructor-detail/${instructorLink}`}>
+                {instructorName}
+              </Link>
+            </div>
+            <div>
+              <span>Протяженность: </span>
+              {hikePath} км.
             </div>
           </div>
           {smallText ? (
@@ -179,12 +180,10 @@ const ProductPage: React.FC<any> = ({
             elem={
               <button
                 style={{ marginTop: "1rem" }}
-                className="small-button-white"
-              >
+                className="small-button-white">
                 Оставить отзыв
               </button>
-            }
-          >
+            }>
             <CommentForm productId={id} />
           </Popup>
         </div>
@@ -242,15 +241,13 @@ const ProductPage: React.FC<any> = ({
             "& li::marker": {
               display: "none", // Убираем маркер
             },
-          }}
-        >
+          }}>
           {tabData.map((tab) => (
             <Tab key={tab.title} label={tab.title} value={tab.title} />
           ))}
         </Tabs>
         <Box
-          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}
-        >
+          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}>
           <div>{tabData.find((tab) => tab.title === value)?.content}</div>
         </Box>
       </Box>

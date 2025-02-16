@@ -3,8 +3,11 @@ import UpcomingHikes from "@/components/UpcomingHikes/UpcomingHikes";
 import ProductPage from "@/customPages/ProductPage/ProductPage";
 import OAuth from "oauth-1.0a";
 import crypto from "crypto";
-import { wordpressUrlWC } from "@/app/globalUrl";
+import { wordpressCustom, wordpressUrl, wordpressUrlWC } from "@/app/globalUrl";
 import { notFound } from "next/navigation";
+import InstructorCard from "@/components/InstructorCard/InstructorCard";
+import { Breadcrumb } from "antd";
+import Link from "next/link";
 
 const CONSUMER_KEY = "ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0";
 const CONSUMER_SECRET = "cs_de302e3f4a9a31a84363d289ed2dbd824a71b558";
@@ -15,7 +18,7 @@ async function getProductBySlug({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  const API_URL = `${wordpressUrlWC}/products?slug=${slug}`;
+  const API_URL = `${wordpressCustom}/instructors/${slug}`;
 
   const oauth = new OAuth({
     consumer: { key: CONSUMER_KEY, secret: CONSUMER_SECRET },
@@ -45,15 +48,15 @@ async function getProductBySlug({
   if (!res.ok) {
     notFound(); // Перенаправляет на 404
   }
-  const products = await res.json();
+  const instructor = await res.json();
 
-  const product = products.find((p: any) => p.slug === slug);
+  // const instructor = instructors.find((p: any) => p.slug === slug);
 
-  if (!product) {
-    throw new Error(`Товар с slug "${slug}" не найден`);
+  if (!instructor) {
+    throw new Error(`Инструктор с slug "${slug}" не найден`);
   }
 
-  return product;
+  return instructor;
 }
 
 export default async function HikesSinglePage({
@@ -61,29 +64,32 @@ export default async function HikesSinglePage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const product = await getProductBySlug({ params });
+  const instructor = await getProductBySlug({ params });
+
+  console.log(instructor);
 
   return (
     <main className="padding-top-content ">
-      <ProductPage
-        id={product.id}
-        title={product.name}
-        description={product.description}
-        smallText={product.short_description}
-        price={product.price}
-        category={product.categories}
-        images={product.images}
-        ardess={product.hike_adress}
-        tabGallery={product.hike_gallery}
-        dates={product.hike_dates}
-        instructorName={product.hike_instructor_name}
-        instructorLink={product.hike_instructor_link}
-        hikePath={product.hike_path}
-      />
+      <section className="main-container">
+        <Breadcrumb
+          style={{ margin: "1rem 0" }}
+          items={[
+            { title: <Link href="/">На главную</Link> },
+            { title: <Link href="/instructors">Инструкторы</Link> },
+            { title: instructor.title },
+          ]}
+        />
+        <InstructorCard
+          title={instructor.title}
+          hike_type={instructor.hike_type}
+          featured_image={instructor.featured_image}
+          description={instructor.description}
+          slug={instructor.slug}
+        />
+      </section>
       <section className="main-container">
         <ContactUs />
       </section>
-      {/* <UpcomingHikes /> */}
     </main>
   );
 }

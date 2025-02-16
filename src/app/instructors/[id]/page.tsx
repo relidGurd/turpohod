@@ -1,27 +1,40 @@
 import InstructorCard from "@/components/InstructorCard/InstructorCard";
-import { wordpressCustom } from "../globalUrl";
+
 import ContactUs from "@/components/ContactUs/ContactUs";
 import UpcomingHikes from "@/components/UpcomingHikes/UpcomingHikes";
 import PageBanner from "@/components/PageBunner/PageBunner";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "antd";
 import Link from "next/link";
+import { wordpressCustom } from "@/app/globalUrl";
 import PaginationInstructors from "@/components/Pagination/PaginationInstructors";
-async function getData() {
-  const res = await fetch(`${wordpressCustom}/instructors?per_page=1`, {
-    next: { revalidate: 100 },
-  });
+
+async function getData({ params }: { params: Promise<{ id: number }> }) {
+  const id = (await params).id;
+
+  const res = await fetch(
+    `${wordpressCustom}/instructors?per_page=1&page=${id}`,
+    {
+      next: { revalidate: 100 },
+    }
+  );
+
   if (!res.ok) {
     notFound(); // Перенаправляет на 404
   }
 
   const totalPages = res.headers.get("X-WP-TotalPages");
   const instructors = await res.json();
+
   return { instructors, totalPages };
 }
 
-const Instructors = async () => {
-  const { instructors, selectedProducts }: any = await getData();
+const InstructorsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}) => {
+  const { instructors, totalPages } = await getData({ params });
 
   const items = [
     {
@@ -49,6 +62,7 @@ const Instructors = async () => {
         ))}
         <PaginationInstructors instructors_pages={instructors.total_pages} />
       </section>
+
       <section className="main-container">
         <ContactUs />
       </section>
@@ -57,4 +71,4 @@ const Instructors = async () => {
   );
 };
 
-export default Instructors;
+export default InstructorsPage;

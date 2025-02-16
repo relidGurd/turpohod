@@ -115,14 +115,14 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               <li key={el.id} className={styles.hikeItem}>
                 <Link
                   style={{ display: "contents" }}
-                  href={`/hike-detail/${el.slug}`}
-                >
+                  href={`/hike-detail/${el.slug}`}>
                   <ProductCard
                     title={el.name}
                     image={el.images[0]?.src}
                     price={el.price}
                     place={el.hike_address}
                     dates={el.hike_dates}
+                    hikePath={el.hike_path}
                   />
                 </Link>
               </li>
@@ -136,8 +136,7 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
                   window.location.reload();
                 }}
                 style={{ marginTop: "1rem" }}
-                variant="contained"
-              >
+                variant="contained">
                 Смотреть все походы
               </Button>
             </div>
