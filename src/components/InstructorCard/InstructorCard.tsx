@@ -39,7 +39,12 @@ const InstructorCard: React.FC<any> = ({
           </div>
           <div
             className={styles.instructorCardText}
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{
+              __html:
+                description.length > 250
+                  ? description.slice(0, 250) + "..."
+                  : description,
+            }}
           />
         </div>
       </div>

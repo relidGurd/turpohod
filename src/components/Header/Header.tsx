@@ -20,6 +20,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
     setOpen(false);
   };
 
+  console.log(socials);
   const [hideMenu, sethideMenu] = useState(false);
   const [visible, setVisible] = useState(true);
 
@@ -53,8 +54,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
       initial="open"
       animate={visible ? "open" : "closed"}
       variants={variants}
-      className={styles.mainHeader}
-    >
+      className={styles.mainHeader}>
       <div className={styles.headerContainer}>
         <HeaderContacts
           contacts={socials.header_contacts}
@@ -76,8 +76,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           initial={{ x: "100%" }}
           animate={{ x: openMobile ? 0 : "100%" }}
           transition={{ type: "spring", stiffness: 150 }}
-          className={styles.menuListMob}
-        >
+          className={styles.menuListMob}>
           <div className={styles.openedMobileMainSection}>
             <div className={styles.Logo}>
               {" "}
@@ -107,11 +106,23 @@ const Header: React.FC<any> = ({ menu, socials }) => {
             <div>
               <div className={styles.mobileSocials}>
                 <span>Email:</span>
-                <a href="mailto:info@itai.ru">info@test.ru</a>
+                {socials.header_contacts[1].contact_text ? (
+                  <a href={socials.header_contacts[1].contact_url}>
+                    {socials.header_contacts[1].contact_text}
+                  </a>
+                ) : (
+                  ""
+                )}
               </div>
               <div className={styles.mobileSocials}>
                 <span>Телефон:</span>
-                <a href="tel:+99999999999">+7 999 999-99-99</a>
+                {socials.header_contacts[0].contact_text ? (
+                  <a href={socials.header_contacts[0].contact_url}>
+                    {socials.header_contacts[0].contact_text}
+                  </a>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </nav>

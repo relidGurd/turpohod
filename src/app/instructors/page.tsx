@@ -8,7 +8,7 @@ import { Breadcrumb } from "antd";
 import Link from "next/link";
 import PaginationInstructors from "@/components/Pagination/PaginationInstructors";
 async function getData() {
-  const res = await fetch(`${wordpressCustom}/instructors?per_page=1`, {
+  const res = await fetch(`${wordpressCustom}/instructors?per_page=4`, {
     next: { revalidate: 100 },
   });
   if (!res.ok) {

@@ -22,7 +22,7 @@ async function getData() {
 
 async function getReviews() {
   const res = await fetch(
-    `https://pohod-spb.ru//wp-json/wc/v3/products/reviews?consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558`,
+    `https://pohod-spb.ru//wp-json/wc/v3/products/reviews?consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558&per_page=10`,
     {
       next: { revalidate: 100 },
     }

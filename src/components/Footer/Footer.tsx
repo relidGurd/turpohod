@@ -2,6 +2,7 @@
 import Link from "next/link";
 import styles from "./footer.module.css";
 import Image from "next/image";
+import FForm from "../FooterForm/FForm";
 const Footer: React.FC<any> = ({ menu, socials }) => {
   return (
     <footer className={styles.mainFooter}>
@@ -10,10 +11,8 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
           <div>
             <div className={styles.footerFormTitle}>Оставайтесь на связи</div>
             <p className={styles.footerFormText}>
-              В этой статье мы расскажем о том, что нужно взять с собой в поход,
-              чтобы он был безопасным и комфортным. Мы рассмотрим основные
-              категории снаряжения, такие как одежда, обувь, рюкзак, еда и
-              вода...
+              Мы всегда готовы помочь! Оставьте свои контактные данные, и мы
+              свяжемся с вами в ближайшее время."
             </p>
             <div className={styles.footerContactsList}>
               <ul className={styles.socialsContainer}>
@@ -52,6 +51,14 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
                 ))}
               </ul>
             </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}>
+            <FForm />
           </div>
         </div>
         <div>

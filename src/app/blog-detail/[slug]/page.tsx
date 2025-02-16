@@ -23,6 +23,26 @@ const fetchPostBySlug = async ({
   return posts[0]; // возвращаем первый пост, если он найден
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  try {
+    const data = await fetchPostBySlug({ params });
+
+    return {
+      title: data.title.rendered,
+      description: data.excerpt.rendered.replace(/<[^>]+>/g, ""), // Убираем HTML из описания
+    };
+  } catch (error) {
+    return {
+      title: "Статья не найдена",
+      description: "Запрошенная статья не найдена.",
+    };
+  }
+}
+
 const ArticleSinglePage = async ({
   params,
 }: {

@@ -1,0 +1,69 @@
+.myForm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.formInputItem {
+  margin-right: 1rem;
+  flex-grow: 2;
+}
+
+.formInputItem label {
+  display: block;
+}
+
+.formInput {
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  height: 50px;
+}
+
+.fFormButton {
+  padding: 15px;
+  background-color: var(--primary-green);
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  height: 50px;
+  border: 1px solid white;
+  transition: 0.3s ease;
+  width: 250px;
+}
+
+.fFormButton:hover {
+  color: var(--primary-green);
+  background-color: white;
+  transition: 0.3s ease;
+}
+
+.errorInput {
+  color: rgb(179, 1, 1);
+}
+
+.formTitle {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+}
+
+.formText {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 520px) {
+  .myForm {
+    flex-direction: column;
+  }
+
+  .formInputItem {
+    width: 100%;
+    flex-grow: 1;
+    margin-right: 0;
+  }
+
+  .fFormButton {
+    width: 100%;
+  }
+}

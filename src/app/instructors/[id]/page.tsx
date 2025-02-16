@@ -13,7 +13,7 @@ async function getData({ params }: { params: Promise<{ id: number }> }) {
   const id = (await params).id;
 
   const res = await fetch(
-    `${wordpressCustom}/instructors?per_page=1&page=${id}`,
+    `${wordpressCustom}/instructors?per_page=4&page=${id}`,
     {
       next: { revalidate: 100 },
     }
@@ -34,7 +34,7 @@ const InstructorsPage = async ({
 }: {
   params: Promise<{ id: number }>;
 }) => {
-  const { instructors, totalPages } = await getData({ params });
+  const { instructors } = await getData({ params });
 
   const items = [
     {
