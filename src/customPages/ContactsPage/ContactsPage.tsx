@@ -14,7 +14,8 @@ const validationSchema = Yup.object({
   phoneNumber: Yup.string().required("Введите ваш телефон"),
 });
 
-const ContactsPage = () => {
+const ContactsPage: React.FC<any> = ({ data }) => {
+  console.log(data);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -111,22 +112,35 @@ const ContactsPage = () => {
               />
             </div>
             <div className={styles.contactsPageLinks}>
-              <div className={styles.contactItem}>
-                <div className={styles.contactIkonContainer}>
-                  <Image
-                    src={"/road.svg"}
-                    width={600}
-                    alt="baner"
-                    className={styles.banerImage}
-                    height={600}
-                  />
-                </div>
-                <div className={styles.linksTextContainer}>
-                  <div className={styles.linkTitle}>Email</div>
-                  <div className={styles.linkUrl}>example@mail.com</div>
-                </div>
-              </div>
-              <div></div>
+              {data.contact_cards
+                ? data.contact_cards.map((el: any, index: number) => (
+                    <div key={index} className={styles.contactItem}>
+                      <div className={styles.contactIkonContainer}>
+                        <Image
+                          src={
+                            el.crb_contact_icon
+                              ? el.crb_contact_icon
+                              : "/road.svg"
+                          }
+                          width={600}
+                          alt="baner"
+                          className={styles.banerImage}
+                          height={600}
+                        />
+                      </div>
+                      <div className={styles.linksTextContainer}>
+                        <div className={styles.linkTitle}>
+                          {el.crb_contact_title}
+                        </div>
+                        <Link
+                          href={el.crb_contact_link}
+                          className={styles.linkUrl}>
+                          {el.crb_contact_link_text}
+                        </Link>
+                      </div>
+                    </div>
+                  ))
+                : ""}
             </div>
           </div>
         </div>

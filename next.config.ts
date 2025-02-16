@@ -5,12 +5,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "pohod-spb.ru",
+        hostname: "cms.pohod-spb.ru",
         pathname: "**",
       },
       {
         protocol: "http",
-        hostname: "pohod-spb.ru",
+        hostname: "cms.pohod-spb.ru",
         pathname: "**",
       },
       {
