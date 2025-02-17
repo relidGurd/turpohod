@@ -73,6 +73,9 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
                   image={el.image}
                   title={el.name || el.title}
                   price={el.price}
+                  place={el.hike_address}
+                  hikePath={el.hike_path}
+                  dates={el.hike_dates}
                 />
               </Link>
             </SwiperSlide>
