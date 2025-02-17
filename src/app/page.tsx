@@ -13,6 +13,7 @@ async function getData() {
       `https://cms.pohod-spb.ru/wp-json/custom/v1/glavnaya`,
       {
         next: { revalidate: 100 },
+        mode: "no-cors",
       }
     );
 
