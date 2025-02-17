@@ -6,7 +6,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { Suspense } from "react";
 import PreloaderC from "@/components/Preloader/Preloader";
-import { notFound } from "next/navigation"; // Добавьте импорт
+import { notFound } from "next/navigation";
 import "@ant-design/v5-patch-for-react-19";
 import StickyButton from "@/components/StickyButton/StickyButton";
 
@@ -21,15 +21,27 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  const res = await fetch(`http://cms.pohod-spb.ru/wp-json/wp/v2/menus`, {
-    next: { revalidate: 100 },
-  });
+  try {
+    const res = await fetch(`http://cms.pohod-spb.ru/wp-json/wp/v2/menus`, {
+      next: { revalidate: 100 },
+    });
 
-  if (!res.ok) {
-    notFound(); // Перенаправляет на 404
+    if (!res.ok) {
+      console.error(`Ошибка загрузки меню: ${res.status}`);
+      return notFound();
+    }
+
+    const data = await res.json();
+    if (!data.length) {
+      console.error("Меню не найдено!");
+      return notFound();
+    }
+
+    return data[0]; // Берем первый элемент массива
+  } catch (error) {
+    console.error("Ошибка загрузки меню:", error);
+    return notFound();
   }
-
-  return res.json();
 }
 
 export default async function RootLayout({
@@ -38,14 +50,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = await getData();
+
   return (
     <html className={manrope.className} lang="ru">
       <body>
         <Suspense fallback={<PreloaderC />}>
-          <Header menu={data[0].menu_items} socials={data[0].customFields} />
+          <Header
+            menu={data?.menu_items || []}
+            socials={data?.customFields || {}}
+          />
           {children}
           <StickyButton />
-          <Footer menu={data[0].menu_items} socials={data[0].customFields} />
+          <Footer
+            menu={data?.menu_items || []}
+            socials={data?.customFields || {}}
+          />
         </Suspense>
       </body>
     </html>
