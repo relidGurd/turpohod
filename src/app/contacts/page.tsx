@@ -20,6 +20,7 @@ async function getData() {
 
 const Contacts = async () => {
   const data = await getData();
+
   return (
     <main>
       <ContactsPage data={data[0]} />

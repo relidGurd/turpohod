@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  const res = await fetch(`http://pohod-spb.ru/wp-json/wp/v2/menus`, {
+  const res = await fetch(`http://cms.pohod-spb.ru/wp-json/wp/v2/menus`, {
     next: { revalidate: 100 },
   });
 
@@ -38,7 +38,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = await getData();
-
   return (
     <html className={manrope.className} lang="ru">
       <body>

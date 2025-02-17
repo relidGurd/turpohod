@@ -5,7 +5,7 @@ import axios from "axios";
 import styles from "./CommentForm.module.css";
 import { wordpressUrlWC, basicUrl } from "@/app/globalUrl";
 
-const API_URL = `https://pohod-spb.ru/wp-json/wc/v3/products/reviews?consumer_key=ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0&consumer_secret=cs_de302e3f4a9a31a84363d289ed2dbd824a71b558`;
+const API_URL = `https://cms.pohod-spb.ru/wp-json/wc/v3/products/reviews?consumer_key=ck_8cc97116a2e001d4a8c361f0b659389a868f3339&consumer_secret=cs_e8f900c35a383b4e0f4810c48220fc0678452c60`;
 
 // Валидация формы
 const validationSchema = Yup.object({
@@ -120,8 +120,7 @@ const CommentForm: React.FC<any> = ({ productId }) => {
         <button
           type="submit"
           className={`small-button ${styles.formButton}`}
-          disabled={loading}
-        >
+          disabled={loading}>
           {loading ? "Отправка..." : "Отправить"}
         </button>
 

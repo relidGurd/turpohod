@@ -9,8 +9,8 @@ import InstructorCard from "@/components/InstructorCard/InstructorCard";
 import { Breadcrumb } from "antd";
 import Link from "next/link";
 
-const CONSUMER_KEY = "ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0";
-const CONSUMER_SECRET = "cs_de302e3f4a9a31a84363d289ed2dbd824a71b558";
+const CONSUMER_KEY = "ck_8cc97116a2e001d4a8c361f0b659389a868f3339";
+const CONSUMER_SECRET = "cs_e8f900c35a383b4e0f4810c48220fc0678452c60";
 
 async function getProductBySlug({
   params,
@@ -85,6 +85,7 @@ export default async function HikesSinglePage({
           featured_image={instructor.featured_image}
           description={instructor.description}
           slug={instructor.slug}
+          isLongText={true}
         />
       </section>
       <section className="main-container">

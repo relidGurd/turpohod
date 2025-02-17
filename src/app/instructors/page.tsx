@@ -45,6 +45,7 @@ const Instructors = async () => {
             featured_image={el.featured_image}
             description={el.description}
             slug={el.slug}
+            isLongText={false}
           />
         ))}
         <PaginationInstructors instructors_pages={instructors.total_pages} />

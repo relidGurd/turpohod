@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
+        hostname: "pohod-spb.ru",
+        pathname: "**",
+      },
+      {
+        protocol: "http",
         hostname: "turpohod.local",
         pathname: "**",
       },

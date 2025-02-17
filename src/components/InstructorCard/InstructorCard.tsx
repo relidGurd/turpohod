@@ -8,6 +8,7 @@ const InstructorCard: React.FC<any> = ({
   featured_image,
   description,
   slug,
+  isLongText,
 }) => {
   return (
     <Link href={`/instructor-detail/${slug}`}>
@@ -37,15 +38,24 @@ const InstructorCard: React.FC<any> = ({
               <div className={styles.instructorsCategoryTitle}>{hike_type}</div>
             </div>
           </div>
-          <div
-            className={styles.instructorCardText}
-            dangerouslySetInnerHTML={{
-              __html:
-                description.length > 250
-                  ? description.slice(0, 250) + "..."
-                  : description,
-            }}
-          />
+          {isLongText ? (
+            <div
+              className={styles.instructorCardText}
+              dangerouslySetInnerHTML={{
+                __html: description,
+              }}
+            />
+          ) : (
+            <div
+              className={styles.instructorCardText}
+              dangerouslySetInnerHTML={{
+                __html:
+                  description.length > 250
+                    ? description.slice(0, 250) + "..."
+                    : description,
+              }}
+            />
+          )}
         </div>
       </div>
     </Link>

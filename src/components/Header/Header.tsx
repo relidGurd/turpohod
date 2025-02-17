@@ -20,7 +20,6 @@ const Header: React.FC<any> = ({ menu, socials }) => {
     setOpen(false);
   };
 
-  console.log(socials);
   const [hideMenu, sethideMenu] = useState(false);
   const [visible, setVisible] = useState(true);
 

@@ -13,8 +13,8 @@ async function getProducts({ params }: { params: Promise<{ id: number }> }) {
 
   const oauth = new OAuth({
     consumer: {
-      key: "ck_8a9dfb1d0caeec90ca8a649017d42fc437956ac0",
-      secret: "cs_de302e3f4a9a31a84363d289ed2dbd824a71b558",
+      key: "ck_8cc97116a2e001d4a8c361f0b659389a868f3339",
+      secret: "cs_e8f900c35a383b4e0f4810c48220fc0678452c60",
     },
     signature_method: "HMAC-SHA1",
     hash_function(base_string, key) {
