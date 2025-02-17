@@ -10,7 +10,7 @@ import { notFound } from "next/navigation"; // Для редиректа на 40
 async function getData() {
   try {
     const res = await fetch(
-      `http://cms.pohod-spb.ru/wp-json/custom/v1/glavnaya`,
+      `https://cms.pohod-spb.ru/wp-json/custom/v1/glavnaya`,
       {
         next: { revalidate: 100 },
       }
