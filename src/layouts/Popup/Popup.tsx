@@ -3,6 +3,7 @@ import styles from "./Popup.module.css";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
+import CloseIcon from "@/icons/CloseIcon";
 interface IPopup {
   elem: React.ReactElement;
   children: React.ReactNode;
@@ -39,8 +40,19 @@ const Popup = ({ children, isOpen, elem }: IPopup) => {
                 stiffness: 260,
                 damping: 20,
               }}
-              className={styles.popupContainer}>
-              <div ref={ref}>{children}</div>
+              className={styles.popupContainer}
+            >
+              <div ref={ref}>
+                <div className={styles.containerPop}>
+                  <div
+                    onClick={() => setOpen(!open)}
+                    className={styles.CloseIconS}
+                  >
+                    <CloseIcon />
+                  </div>
+                  {children}
+                </div>
+              </div>
             </motion.div>,
 
             document.body

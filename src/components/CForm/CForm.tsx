@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IMaskInput } from "react-imask";
 import styles from "./CForm.module.css";
+import CloseIcon from "@/icons/CloseIcon";
 // Схема валидации
 const validationSchema = Yup.object({
   name: Yup.string().required("Введите ваше имя"),

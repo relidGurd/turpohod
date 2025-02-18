@@ -73,7 +73,7 @@ const ProductPage: React.FC<any> = ({
       content: hasMounted ? <ProductGallery images={tabGallery} /> : "",
     },
     {
-      title: "Комментарии",
+      title: "Отзывы",
       content: hasMounted ? (
         <div className={styles.reviewsContainer}>
           {reviews.map((reviewI: any) => (
@@ -112,7 +112,8 @@ const ProductPage: React.FC<any> = ({
           style={{ width: "100%" }}
           pagination={true}
           modules={[Pagination]}
-          className="mySwiper">
+          className="mySwiper"
+        >
           {images.map((el: any) => (
             <SwiperSlide style={{ width: "100%" }} key={el.id}>
               <div className={styles.imageContainer}>
@@ -180,10 +181,12 @@ const ProductPage: React.FC<any> = ({
             elem={
               <button
                 style={{ marginTop: "1rem" }}
-                className="small-button-white">
+                className="small-button-white"
+              >
                 Оставить отзыв
               </button>
-            }>
+            }
+          >
             <CommentForm productId={id} />
           </Popup>
         </div>
@@ -241,13 +244,15 @@ const ProductPage: React.FC<any> = ({
             "& li::marker": {
               display: "none", // Убираем маркер
             },
-          }}>
+          }}
+        >
           {tabData.map((tab) => (
             <Tab key={tab.title} label={tab.title} value={tab.title} />
           ))}
         </Tabs>
         <Box
-          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}>
+          sx={{ p: 3, mt: 2, border: "1px solid #ddd", borderRadius: "8px" }}
+        >
           <div>{tabData.find((tab) => tab.title === value)?.content}</div>
         </Box>
       </Box>
