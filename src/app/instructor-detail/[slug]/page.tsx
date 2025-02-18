@@ -66,8 +66,6 @@ export default async function HikesSinglePage({
 }) {
   const instructor = await getProductBySlug({ params });
 
-  console.log(instructor);
-
   return (
     <main className="padding-top-content ">
       <section className="main-container">

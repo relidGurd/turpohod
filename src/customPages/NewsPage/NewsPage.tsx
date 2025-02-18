@@ -7,8 +7,6 @@ import { Breadcrumb } from "antd";
 import Link from "next/link";
 
 const NewsPage: React.FC<any> = ({ post }) => {
-  console.log(post);
-
   const items = [
     {
       title: <Link href="/">На главную</Link>,
@@ -22,7 +20,7 @@ const NewsPage: React.FC<any> = ({ post }) => {
   ];
   return (
     <div>
-      <Breadcrumb style={{ marginBottom: "2rem" }} items={items} />
+      <Breadcrumb style={{ margin: "1.5rem 0" }} items={items} />
       <h1 className="main-title">{post.title.rendered}</h1>
       <div className={styles.newsPageContent}>
         <div className={styles.contentSection}>
@@ -55,16 +53,6 @@ const NewsPage: React.FC<any> = ({ post }) => {
             ) : (
               ""
             )}
-            {/* <Link href={`/hike-detail/${post.selected_products[0].slug}`}>
-              <ProductCard
-                image={post.selected_products[0].image}
-                title={post.selected_products[0].title}
-                price={post.selected_products[0].price}
-                dates={post.selected_products[0].hike_dates}
-                place={post.selected_products[0].hike_address}
-                hikePath={post.selected_products[0].hike_path}
-              />
-            </Link> */}
           </div>
         </div>
       </div>

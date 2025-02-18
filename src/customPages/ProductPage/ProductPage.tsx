@@ -47,7 +47,6 @@ const ProductPage: React.FC<any> = ({
       try {
         const response = await axios.get(API_URL);
         const reviews = response.data;
-        console.log(reviews);
         setReviews(reviews);
       } catch (error: any) {
         console.error(

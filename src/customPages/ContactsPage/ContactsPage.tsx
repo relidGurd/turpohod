@@ -15,7 +15,6 @@ const validationSchema = Yup.object({
 });
 
 const ContactsPage: React.FC<any> = ({ data }) => {
-  console.log(data);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -96,7 +95,8 @@ const ContactsPage: React.FC<any> = ({ data }) => {
 
               <button
                 type="submit"
-                className={`small-button ${styles.formButton}`}>
+                className={`small-button ${styles.formButton}`}
+              >
                 Отправить
               </button>
             </form>
@@ -134,7 +134,8 @@ const ContactsPage: React.FC<any> = ({ data }) => {
                         </div>
                         <Link
                           href={el.crb_contact_link}
-                          className={styles.linkUrl}>
+                          className={styles.linkUrl}
+                        >
                           {el.crb_contact_link_text}
                         </Link>
                       </div>
