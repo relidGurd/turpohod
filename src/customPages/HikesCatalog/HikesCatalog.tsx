@@ -75,6 +75,57 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     }
   };
 
+  const filterByPrice = async () => {
+    setIsLoading(true); // Начинаем загрузку
+    setFiltredData([]); // Очищаем старые данные, чтобы избежать мерцания
+
+    try {
+      const oauth = new OAuth({
+        consumer: {
+          key: "ck_8cc97116a2e001d4a8c361f0b659389a868f3339",
+          secret: "cs_e8f900c35a383b4e0f4810c48220fc0678452c60",
+        },
+        signature_method: "HMAC-SHA1",
+        hash_function(base_string, key) {
+          return crypto
+            .createHmac("sha1", key)
+            .update(base_string)
+            .digest("base64");
+        },
+      });
+
+      const request_data = { url: API_URL, method: "GET" };
+      const authHeader = oauth.toHeader(oauth.authorize(request_data));
+
+      const res = await fetch(API_URL, {
+        method: "GET",
+        headers: { Authorization: authHeader.Authorization },
+      });
+
+      if (!res.ok) {
+        notFound();
+      }
+
+      const products = await res.json();
+
+      // Оставляем только продукты с валидной ценой и сортируем
+      const sortedByPrice = products
+        .map((prod: any) => ({
+          ...prod,
+          price: Number(prod.price), // Преобразуем строку в число
+        }))
+        .filter((prod: any) => !isNaN(prod.price)) // Исключаем товары, у которых price не число
+        .sort((a: any, b: any) => a.price - b.price); // Сортируем по возрастанию
+
+      setFiltredData(sortedByPrice);
+      setFiltredPagination(1);
+    } catch (error) {
+      console.error("Ошибка загрузки данных:", error);
+    } finally {
+      setIsLoading(false); // Завершаем загрузку
+    }
+  };
+
   return (
     <section className={`main-container`}>
       <Breadcrumb
@@ -101,6 +152,15 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
           >
             {isLoading ? "Загрузка..." : "Фильтр"}
           </Button>
+
+          <Button
+            style={{ marginLeft: "0.5rem" }}
+            onClick={filterByPrice}
+            variant="text"
+            disabled={isLoading} // Блокируем кнопку при загрузке
+          >
+            {isLoading ? "Загрузка..." : "По цене"}
+          </Button>
         </div>
       </div>
 
@@ -115,7 +175,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               <li key={el.id} className={styles.hikeItem}>
                 <Link
                   style={{ display: "contents" }}
-                  href={`/hike-detail/${el.slug}`}>
+                  href={`/hike-detail/${el.slug}`}
+                >
                   <ProductCard
                     title={el.name}
                     image={el.images[0]?.src}
@@ -136,7 +197,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
                   window.location.reload();
                 }}
                 style={{ marginTop: "1rem" }}
-                variant="contained">
+                variant="contained"
+              >
                 Смотреть все походы
               </Button>
             </div>

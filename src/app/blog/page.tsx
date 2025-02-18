@@ -25,7 +25,6 @@ async function getData() {
 
 const BlogPage = async () => {
   const { posts, totalPages } = await getData();
-  console.log(totalPages);
 
   const items = [
     {
