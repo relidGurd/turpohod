@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./StickyButton.module.css";
 import Image from "next/image";
 
-const StickyButton = () => {
+const StickyButton: React.FC<any> = () => {
   return (
     <Link href={`tel: 799999999`} className={styles.stickyContainer}>
       <div className={styles.stickyItem}>
