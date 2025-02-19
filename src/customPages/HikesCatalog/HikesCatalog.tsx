@@ -25,6 +25,11 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
 
   const onChangeP = (value: any, dateString: any) => {
     setDate(dateString);
+    if (!dateString) {
+      router.push("/hike");
+      window.location.reload();
+    }
+    return filterByDate();
   };
 
   const filterByDate = async () => {
@@ -147,14 +152,14 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               onOk={(value: any) => setDate(value)}
               placeholder={"Выберите дату похода"}
             />
-            <button
+            {/* <button
               style={{ marginLeft: "0.5rem" }}
               onClick={filterByDate}
               className={styles.pickerButton}
               disabled={isLoading} // Блокируем кнопку при загрузке
             >
               {isLoading ? "Загрузка..." : "Искать по дате"}
-            </button>
+            </button> */}
           </div>
         </div>
 
