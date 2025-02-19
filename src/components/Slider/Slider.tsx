@@ -8,7 +8,6 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import Popup from "@/layouts/Popup/Popup";
 import CForm from "../CForm/CForm";
-import { title } from "process";
 
 const Slider: React.FC<any> = ({ slides }) => {
   return (
@@ -32,11 +31,7 @@ const Slider: React.FC<any> = ({ slides }) => {
                   src={el.image ? el.image : "/slide.png"}
                   width={1000}
                   height={1000}
-                  alt={
-                    title
-                      ? `Изображение слайда ${title}`
-                      : "Изображение слайда не указано"
-                  }
+                  alt={`Изображение слайда`}
                 />
               </div>
               <div className={styles.sliderContentContainer}>

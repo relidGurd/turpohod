@@ -48,23 +48,6 @@ const CForm = () => {
           ) : null}
         </div>
 
-        {/* <div className={styles.formInputItem}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            className={styles.formInput}
-            placeholder="example@mail.com"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div className={styles.errorInput}>{formik.errors.email}</div>
-          ) : null}
-        </div> */}
-
         <div className={styles.formInputItem}>
           <label htmlFor="phoneNumber">Телефон</label>
           <IMaskInput

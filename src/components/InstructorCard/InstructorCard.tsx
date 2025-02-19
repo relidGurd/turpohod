@@ -20,7 +20,7 @@ const InstructorCard: React.FC<any> = ({
             src={featured_image ? featured_image : "/example.png"}
             width={850}
             height={850}
-            alt={title ? `Фото инструктора ${title}` : "Фото инструтора"}
+            alt={`Фото инструктора ${title}`}
           />
         </div>
         <div className={styles.descriptionBlock}>

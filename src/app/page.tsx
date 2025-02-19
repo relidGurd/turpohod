@@ -51,14 +51,14 @@ async function getReviews() {
 
     const data = await res.json();
     if (!Array.isArray(data) || data.length === 0) {
-      console.error("Отзывы не найдены!");
-      return notFound();
+      // console.error("Отзывы не найдены!");
+      return [];
     }
 
     return data;
   } catch (error) {
     console.error("Ошибка загрузки отзывов:", error);
-    return notFound();
+    return [];
   }
 }
 

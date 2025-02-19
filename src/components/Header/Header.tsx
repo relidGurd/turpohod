@@ -91,7 +91,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
                   src={socials.header_logo}
                   width={137}
                   height={56}
-                  alt=""
+                  alt="Логотип"
                 />
               </Link>
             </div>
