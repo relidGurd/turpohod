@@ -108,7 +108,7 @@ const ProductPage: React.FC<any> = ({
       />
       <div className={styles.cardContainer}>
         <Swiper
-          style={{ width: "100%" }}
+          style={{ width: "100%", height: "450px" }}
           pagination={true}
           modules={[Pagination]}
           className="mySwiper"

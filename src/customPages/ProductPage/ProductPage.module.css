@@ -52,7 +52,8 @@
 .instructorLink {
   padding-bottom: 1px;
   color: var(--primary-green);
-  text-decoration: underline !important;
+  padding-bottom: 0.5px;
+  border-bottom: 1px solid var(--primary-green);
   cursor: pointer;
 }
 
