@@ -23,7 +23,7 @@ const ReviewItem: React.FC<any> = ({ review }) => {
             <div className={styles.reviewerName}>
               {review.reviewer ? review.reviewer : ""}
             </div>
-            <span className={styles.reviewHike}>{review.product_name}</span>
+            <span className={styles.reviewHike}>{decodedName}</span>
             <div
               className={styles.reviewText}
               dangerouslySetInnerHTML={{
