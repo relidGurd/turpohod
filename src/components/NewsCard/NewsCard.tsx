@@ -17,7 +17,7 @@ const NewsCard: React.FC<any> = ({ text, title, image, slug }) => {
             src={image ? image : "/example.jpg"}
             width={1000}
             height={1000}
-            alt=""
+            alt={title ? `Превью фото новости ${title}` : "фото не указано"}
           />
         </div>
         <div>

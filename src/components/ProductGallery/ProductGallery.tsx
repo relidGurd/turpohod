@@ -24,15 +24,21 @@ const ProductGallery: React.FC<any> = ({ images }) => {
                   src={el}
                   width={250}
                   height={250}
-                  alt=""
+                  alt="Изображение галереи"
                 />
               </div>
-            }>
+            }
+          >
             <div className={styles.bigImageContainer}>
               <Swiper initialSlide={slideIndex}>
                 {images.map((item: any, index: number) => (
                   <SwiperSlide key={index}>
-                    <Image src={item} width={1000} height={1000} alt="" />
+                    <Image
+                      src={item}
+                      width={1000}
+                      height={1000}
+                      alt="Изображение галереи"
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>

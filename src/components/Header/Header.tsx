@@ -53,7 +53,8 @@ const Header: React.FC<any> = ({ menu, socials }) => {
       initial="open"
       animate={visible ? "open" : "closed"}
       variants={variants}
-      className={styles.mainHeader}>
+      className={styles.mainHeader}
+    >
       <div className={styles.headerContainer}>
         <HeaderContacts
           contacts={socials.header_contacts}
@@ -65,7 +66,12 @@ const Header: React.FC<any> = ({ menu, socials }) => {
       <div className={`${styles.mobileContainer} main-container`}>
         <div className={styles.mobileButtons}>
           <Link href={"/"}>
-            <Image src={socials.header_logo} width={137} height={56} alt="" />
+            <Image
+              src={socials.header_logo}
+              width={137}
+              height={56}
+              alt="Логотип"
+            />
           </Link>
           <div onClick={() => handleOpen()}>
             <Burger />
@@ -75,7 +81,8 @@ const Header: React.FC<any> = ({ menu, socials }) => {
           initial={{ x: "100%" }}
           animate={{ x: openMobile ? 0 : "100%" }}
           transition={{ type: "spring", stiffness: 150 }}
-          className={styles.menuListMob}>
+          className={styles.menuListMob}
+        >
           <div className={styles.openedMobileMainSection}>
             <div className={styles.Logo}>
               {" "}

@@ -15,7 +15,7 @@ const Advantages: React.FC<any> = ({ features }) => {
                   <Image
                     className={styles.advItemImage}
                     src={el.image ? el.image : "/road.svg"}
-                    alt={""}
+                    alt={"Иконка преимущества"}
                     width={150}
                     height={150}
                   />

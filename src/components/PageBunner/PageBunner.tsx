@@ -10,7 +10,7 @@ const PageBanner = ({ title }: any) => {
           src={"/bgContact.png"}
           width={1640}
           height={800}
-          alt=""
+          alt={`Фото страницы: ${title}`}
         />
       </div>
       <div className={styles.bannerImageContainerFilter}> </div>

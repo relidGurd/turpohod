@@ -20,7 +20,8 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
                   <li key={index} className={styles.socialsItem}>
                     <Link
                       href={el.contact_url}
-                      className={styles.footerContacts}>
+                      className={styles.footerContacts}
+                    >
                       <div className={styles.footerIconContacts}>
                         <Image
                           className={styles.svgInvert}
@@ -41,7 +42,7 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
                     <Link className={styles.footerIcon} href={el.social_url}>
                       <Image
                         className={styles.svgInvert}
-                        alt=""
+                        alt="Логотип"
                         src={el.social_icon}
                         width={20}
                         height={20}
@@ -57,7 +58,8 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-            }}>
+            }}
+          >
             <FForm />
           </div>
         </div>

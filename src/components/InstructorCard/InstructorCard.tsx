@@ -20,7 +20,7 @@ const InstructorCard: React.FC<any> = ({
             src={featured_image ? featured_image : "/example.png"}
             width={850}
             height={850}
-            alt=""
+            alt={title ? `Фото инструктора ${title}` : "Фото инструтора"}
           />
         </div>
         <div className={styles.descriptionBlock}>
@@ -33,7 +33,7 @@ const InstructorCard: React.FC<any> = ({
                   src={"/mountain.svg"}
                   width={25}
                   height={25}
-                  alt=""
+                  alt={"Иконка инструктора"}
                 />
               </div>
               <div className={styles.instructorsCategoryTitle}>{hike_type}</div>

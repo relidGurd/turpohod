@@ -152,14 +152,6 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
               onOk={(value: any) => setDate(value)}
               placeholder={"Выберите дату похода"}
             />
-            {/* <button
-              style={{ marginLeft: "0.5rem" }}
-              onClick={filterByDate}
-              className={styles.pickerButton}
-              disabled={isLoading} // Блокируем кнопку при загрузке
-            >
-              {isLoading ? "Загрузка..." : "Искать по дате"}
-            </button> */}
           </div>
         </div>
 

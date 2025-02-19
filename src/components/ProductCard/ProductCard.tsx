@@ -20,7 +20,7 @@ const ProductCard: React.FC<any> = ({
             src={image ? image : "/example.jpg"}
             width={1000}
             height={1000}
-            alt=""
+            alt={title ? `Поход: ${title}` : "фото не указано"}
           />
         </div>
         <div className={styles.cardTitle}>{title}</div>

@@ -14,7 +14,7 @@ const ContactUs: React.FC<any> = () => {
           src={"/bgContact.png"}
           width={1100}
           height={1100}
-          alt=""
+          alt="Баннер контакты"
         />
       </div>
       <div className={styles.ContactContent}>
@@ -37,7 +37,8 @@ const ContactUs: React.FC<any> = () => {
           <Popup
             elem={
               <button className={styles.contactsButton}>Консультация</button>
-            }>
+            }
+          >
             <CForm />
           </Popup>
         </div>
