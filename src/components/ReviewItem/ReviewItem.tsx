@@ -7,6 +7,10 @@ import dayjs from "dayjs";
 const ReviewItem: React.FC<any> = ({ review }) => {
   const formattedDate = dayjs(review.date_created).format("DD.MM.YYYY");
 
+  const decodedName = review.product_name
+    .replace(/&#171;/g, "«")
+    .replace(/&#187;/g, "»");
+
   return (
     <Popup
       elem={
@@ -35,13 +39,14 @@ const ReviewItem: React.FC<any> = ({ review }) => {
             </Link>
           </div>
         </li>
-      }>
+      }
+    >
       <li className={styles.ReviewItem}>
         <div>
           <div className={styles.reviewerName}>
             {review.reviewer ? review.reviewer : ""}
           </div>
-          <span className={styles.reviewHike}>{review.product_name}</span>
+          <span className={styles.reviewHike}>{decodedName}</span>
           <div
             className={styles.reviewText}
             dangerouslySetInnerHTML={{

@@ -135,7 +135,9 @@ const ProductPage: React.FC<any> = ({
             </div>
             <div>
               <span>Даты похода: </span>
-              {dates}
+              <span style={{ color: "black", fontWeight: "bold" }}>
+                {dates}
+              </span>
             </div>
             <div>
               <span>Инструктор: </span>
