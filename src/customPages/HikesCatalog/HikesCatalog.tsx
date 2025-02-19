@@ -29,14 +29,14 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
       router.push("/hike");
       window.location.reload();
     }
-    return filterByDate();
+    return filterByDate(dateString);
   };
 
-  const filterByDate = async () => {
+  const filterByDate = async (test: any) => {
     setIsLoading(true); // Начинаем загрузку
     setFiltredData([]); // Очищаем старые данные, чтобы избежать мерцания
 
-    const formattedDate = date ? dayjs(date).format("DD.MM.YYYY") : "";
+    const formattedDate = test ? dayjs(test).format("DD.MM.YYYY") : "";
 
     try {
       const oauth = new OAuth({
