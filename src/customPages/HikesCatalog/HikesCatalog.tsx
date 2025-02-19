@@ -75,9 +75,9 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     }
   };
 
-  const filterByPrice = async () => {
-    setIsLoading(true); // Начинаем загрузку
-    setFiltredData([]); // Очищаем старые данные, чтобы избежать мерцания
+  const filterByPrice = async (ascending: boolean) => {
+    setIsLoading(true);
+    setFiltredData([]);
 
     try {
       const oauth = new OAuth({
@@ -108,21 +108,23 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
 
       const products = await res.json();
 
-      // Оставляем только продукты с валидной ценой и сортируем
+      // Фильтрация и сортировка
       const sortedByPrice = products
         .map((prod: any) => ({
           ...prod,
-          price: Number(prod.price), // Преобразуем строку в число
+          price: prod.price ? Number(prod.price) : NaN, // Преобразуем цену в число, если она не пустая
         }))
-        .filter((prod: any) => !isNaN(prod.price)) // Исключаем товары, у которых price не число
-        .sort((a: any, b: any) => a.price - b.price); // Сортируем по возрастанию
+        .filter((prod: any) => !isNaN(prod.price) && prod.price > 0) // Исключаем пустые или некорректные цены
+        .sort((a: any, b: any) =>
+          ascending ? a.price - b.price : b.price - a.price
+        ); // Сортировка
 
       setFiltredData(sortedByPrice);
       setFiltredPagination(1);
     } catch (error) {
       console.error("Ошибка загрузки данных:", error);
     } finally {
-      setIsLoading(false); // Завершаем загрузку
+      setIsLoading(false);
     }
   };
 
@@ -137,30 +139,48 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
       />
 
       <div className={styles.filtersContainer}>
-        <span className={styles.datePickName}>Выберите даты похода</span>
         <div>
-          <DatePicker
-            onChange={onChangeP}
-            onOk={(value: any) => setDate(value)}
-            placeholder={"Выберите дату похода"}
-          />
-          <Button
-            style={{ marginLeft: "0.5rem" }}
-            onClick={filterByDate}
-            variant="text"
-            disabled={isLoading} // Блокируем кнопку при загрузке
-          >
-            {isLoading ? "Загрузка..." : "Фильтр"}
-          </Button>
+          <div>
+            <span className={styles.datePickName}>Выберите даты похода</span>
+            <DatePicker
+              onChange={onChangeP}
+              onOk={(value: any) => setDate(value)}
+              placeholder={"Выберите дату похода"}
+            />
+            <button
+              style={{ marginLeft: "0.5rem" }}
+              onClick={filterByDate}
+              className={styles.pickerButton}
+              disabled={isLoading} // Блокируем кнопку при загрузке
+            >
+              {isLoading ? "Загрузка..." : "Искать по дате"}
+            </button>
+          </div>
+        </div>
 
-          <Button
-            style={{ marginLeft: "0.5rem" }}
-            onClick={filterByPrice}
-            variant="text"
-            disabled={isLoading} // Блокируем кнопку при загрузке
+        <div className={styles.sortedContainer}>
+          <button
+            onClick={() => filterByPrice(true)}
+            disabled={isLoading}
+            style={{
+              marginLeft: "0.5rem",
+              textDecoration: "underline",
+              color: "var(--primary-green)",
+            }}
           >
-            {isLoading ? "Загрузка..." : "По цене"}
-          </Button>
+            По возрастанию
+          </button>
+          <button
+            onClick={() => filterByPrice(false)}
+            disabled={isLoading}
+            style={{
+              marginLeft: "0.5rem",
+              textDecoration: "underline",
+              color: "var(--primary-green)",
+            }}
+          >
+            По убыванию
+          </button>
         </div>
       </div>
 

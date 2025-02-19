@@ -62,7 +62,7 @@ const CommentForm: React.FC<any> = ({ productId }) => {
 
   return (
     <div className={styles.formBlock}>
-      <h2 className={styles.formTitle}>Оставьте отзыв о товаре</h2>
+      <h2 className={styles.formTitle}>Оставьте отзыв о походе</h2>
       <form onSubmit={formik.handleSubmit} className={styles.myForm}>
         {/* Поле Имя */}
         <div className={styles.formInputItem}>
@@ -120,7 +120,8 @@ const CommentForm: React.FC<any> = ({ productId }) => {
         <button
           type="submit"
           className={`small-button ${styles.formButton}`}
-          disabled={loading}>
+          disabled={loading}
+        >
           {loading ? "Отправка..." : "Отправить"}
         </button>
 

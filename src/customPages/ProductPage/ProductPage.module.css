@@ -49,6 +49,13 @@
   gap: 20px;
 }
 
+.instructorLink {
+  padding-bottom: 1px;
+  color: var(--primary-green);
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 950px) {
   .cardContainer {
     grid-template-columns: repeat(1, 1fr);

@@ -20,8 +20,10 @@ const NewsPage: React.FC<any> = ({ post }) => {
   ];
   return (
     <div>
-      <Breadcrumb style={{ margin: "1.5rem 0" }} items={items} />
-      <h1 className="main-title">{post.title.rendered}</h1>
+      <Breadcrumb className={styles.newsPageBreadcrumbs} items={items} />
+      <h1 className={`main-title ${styles.newsPageTitle}`}>
+        {post.title.rendered}
+      </h1>
       <div className={styles.newsPageContent}>
         <div className={styles.contentSection}>
           <div className={styles.postImageContainer}>
@@ -37,7 +39,7 @@ const NewsPage: React.FC<any> = ({ post }) => {
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
           </div>
         </div>
-        <div className={styles.productSection}>
+        {/* <div className={styles.productSection}>
           <div className={styles.newsProd}>
             {post.selected_products[0] ? (
               <Link href={`/hike-detail/${post.selected_products[0].slug}`}>
@@ -54,7 +56,7 @@ const NewsPage: React.FC<any> = ({ post }) => {
               ""
             )}
           </div>
-        </div>
+        </div> */}
       </div>
       <ContactUs />
     </div>

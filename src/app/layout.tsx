@@ -60,7 +60,7 @@ export default async function RootLayout({
             socials={data?.customFields || {}}
           />
           {children}
-          <StickyButton />
+          <StickyButton socials={data?.customFields || {}} />
           <Footer
             menu={data?.menu_items || []}
             socials={data?.customFields || {}}

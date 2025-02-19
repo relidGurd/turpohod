@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./InstructorCard.module.css";
 import Link from "next/link";
+
 const InstructorCard: React.FC<any> = ({
   title,
   hike_type,
@@ -50,8 +51,8 @@ const InstructorCard: React.FC<any> = ({
               className={styles.instructorCardText}
               dangerouslySetInnerHTML={{
                 __html:
-                  description.length > 250
-                    ? description.slice(0, 250) + "..."
+                  description.length > 1000
+                    ? description.slice(0, 997) + "..."
                     : description,
               }}
             />

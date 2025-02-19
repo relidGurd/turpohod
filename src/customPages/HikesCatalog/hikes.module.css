@@ -13,6 +13,9 @@
 
 .filtersContainer {
   margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 .filtersContainer span {
   display: block;
@@ -30,6 +33,22 @@
   text-align: center;
 }
 
+.pickerButton {
+  border-radius: 0.2rem;
+  border: 1px solid lightgrey;
+  height: 100%;
+  padding: 4px 11px 4px;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.pickerButton:hover {
+  border: 1px solid var(--primary-green);
+  color: white;
+  background-color: var(--primary-green);
+  transition: 0.3s ease;
+}
+
 @media screen and (max-width: 1020px) {
   .hikesList {
     display: grid;
@@ -43,5 +62,17 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .filtersContainer {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sortedContainer {
+    margin-top: 1rem;
   }
 }

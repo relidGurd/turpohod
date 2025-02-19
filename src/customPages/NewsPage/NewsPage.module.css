@@ -1,4 +1,16 @@
 .newsPageContent {
+  margin: 40px 200px 200px 200px;
+}
+
+.newsPageTitle {
+  margin: 0 200px;
+}
+
+.newsPageBreadcrumbs {
+  margin: 1.5rem 200px;
+}
+
+/* .newsPageContent {
   position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -9,8 +21,8 @@
 
 .contentSection {
   grid-column: span 4;
-}
-
+} */
+/* 
 .productSection {
   grid-column: span 2;
 }
@@ -18,7 +30,7 @@
 .newsProd {
   position: sticky;
   top: 150px;
-}
+} */
 
 .postImageContainer {
   width: 100%;
@@ -51,8 +63,16 @@
 }
 
 @media screen and (max-width: 1010px) {
+  .newsPageBreadcrumbs {
+    margin: 1.5rem 0;
+  }
+  .newsPageTitle {
+    margin: 0;
+  }
+
   .newsPageContent {
     grid-template-columns: repeat(1, 1fr);
+    margin: 30px 0;
   }
 
   .contentSection {

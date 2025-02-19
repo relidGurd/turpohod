@@ -113,8 +113,8 @@ const ProductPage: React.FC<any> = ({
           modules={[Pagination]}
           className="mySwiper"
         >
-          {images.map((el: any) => (
-            <SwiperSlide style={{ width: "100%" }} key={el.id}>
+          {images.map((el: any, index: any) => (
+            <SwiperSlide style={{ width: "100%" }} key={index}>
               <div className={styles.imageContainer}>
                 <Image
                   className={styles.imageContainerIm}
@@ -139,7 +139,10 @@ const ProductPage: React.FC<any> = ({
             </div>
             <div>
               <span>Инструктор: </span>
-              <Link href={`/instructor-detail/${instructorLink}`}>
+              <Link
+                className={styles.instructorLink}
+                href={`/instructor-detail/${instructorLink}`}
+              >
                 {instructorName}
               </Link>
             </div>
