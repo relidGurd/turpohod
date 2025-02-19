@@ -133,6 +133,72 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     }
   };
 
+  const filterByDateTwo = async (ascending = false) => {
+    setIsLoading(true);
+    setFiltredData([]);
+
+    try {
+      const oauth = new OAuth({
+        consumer: {
+          key: "ck_8cc97116a2e001d4a8c361f0b659389a868f3339",
+          secret: "cs_e8f900c35a383b4e0f4810c48220fc0678452c60",
+        },
+        signature_method: "HMAC-SHA1",
+        hash_function(base_string, key) {
+          return crypto
+            .createHmac("sha1", key)
+            .update(base_string)
+            .digest("base64");
+        },
+      });
+
+      const request_data = { url: API_URL, method: "GET" };
+      const authHeader = oauth.toHeader(oauth.authorize(request_data));
+
+      const res = await fetch(API_URL, {
+        method: "GET",
+        headers: { Authorization: authHeader.Authorization },
+      });
+
+      if (!res.ok) {
+        notFound();
+      }
+
+      const products = await res.json();
+
+      // Фильтрация и сортировка
+      const sortedByDate = products
+        .map((prod: any) => ({
+          ...prod,
+          price: prod.price ? Number(prod.price) : NaN, // Преобразуем цену в число, если она не пустая
+          date: prod.hike_filter_date
+            ? new Date(prod.hike_filter_date.split(".").reverse().join("-"))
+            : null, // Преобразуем дату в объект Date
+        }))
+        .filter(
+          (prod: any) =>
+            !isNaN(prod.price) &&
+            prod.price > 0 &&
+            prod.date instanceof Date &&
+            !isNaN(prod.date)
+        ) // Исключаем пустые или некорректные цены и даты
+        .sort((a: any, b: any) => {
+          if (ascending) {
+            return a.date - b.date;
+          } else {
+            return b.date - a.date;
+          }
+        });
+
+      setFiltredData(sortedByDate);
+      setFiltredPagination(1);
+    } catch (error) {
+      console.error("Ошибка загрузки данных:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className={`main-container`}>
       <Breadcrumb
@@ -156,28 +222,47 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
         </div>
 
         <div className={styles.sortedContainer}>
-          <button
-            onClick={() => filterByPrice(true)}
-            disabled={isLoading}
-            style={{
-              marginLeft: "0.5rem",
-              textDecoration: "underline",
-              color: "var(--primary-green)",
-            }}
-          >
-            По возрастанию
-          </button>
-          <button
-            onClick={() => filterByPrice(false)}
-            disabled={isLoading}
-            style={{
-              marginLeft: "0.5rem",
-              textDecoration: "underline",
-              color: "var(--primary-green)",
-            }}
-          >
-            По убыванию
-          </button>
+          <div style={{ marginRight: "1rem" }}>
+            <div>
+              <span className={styles.datePickName}>Сортировать по дате: </span>
+              <button
+                onClick={() => filterByDateTwo()}
+                disabled={isLoading}
+                style={{
+                  textDecoration: "underline",
+                  color: "var(--primary-green)",
+                }}
+              >
+                Ближайшие походы
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <span className={styles.datePickName}>Сортировать по цене: </span>
+              <button
+                onClick={() => filterByPrice(true)}
+                disabled={isLoading}
+                style={{
+                  marginRight: "1rem",
+                  textDecoration: "underline",
+                  color: "var(--primary-green)",
+                }}
+              >
+                По возрастанию
+              </button>
+              <button
+                onClick={() => filterByPrice(false)}
+                disabled={isLoading}
+                style={{
+                  textDecoration: "underline",
+                  color: "var(--primary-green)",
+                }}
+              >
+                По убыванию
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

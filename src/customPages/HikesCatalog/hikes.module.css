@@ -14,7 +14,7 @@
 .filtersContainer {
   margin-bottom: 2rem;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
 }
 .filtersContainer span {
@@ -47,6 +47,10 @@
   color: white;
   background-color: var(--primary-green);
   transition: 0.3s ease;
+}
+
+.sortedContainer {
+  display: flex;
 }
 
 @media screen and (max-width: 1020px) {
