@@ -17,17 +17,16 @@ async function getProductBySlug({
   const res = await fetch(API_URL, { method: "GET" });
 
   if (!res.ok) {
-    notFound();
+    notFound(); // Перенаправляем на 404, если запрос не удался
   }
 
   const products = await res.json();
-  const product = products.length ? products[0] : null;
 
-  if (!product) {
-    throw new Error(`Товар с slug "${slug}" не найден`);
+  if (!products.length) {
+    notFound(); // Перенаправляем на 404, если товар не найден
   }
 
-  return product;
+  return products[0]; // Возвращаем первый найденный товар
 }
 
 export default async function HikesSinglePage({
