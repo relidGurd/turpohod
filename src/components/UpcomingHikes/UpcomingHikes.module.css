@@ -41,6 +41,11 @@
   transition: 0.3s ease;
 }
 
+.upcomingHikesButton:hover {
+  background-color: var(--primary-green);
+  color: white;
+}
+
 @media screen and (max-width: 950px) {
   .stagesButtons {
     justify-content: flex-start;

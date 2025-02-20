@@ -54,6 +54,12 @@
   justify-content: center;
 }
 
+.buttonS:hover {
+  background-color: white;
+  color: var(--primary-green);
+  transition: 0.3s ease;
+}
+
 .slideContent p {
   padding: 65px 0;
 }

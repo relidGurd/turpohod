@@ -15,7 +15,7 @@ const Slider: React.FC<any> = ({ slides }) => {
       <Swiper
         navigation={true}
         autoplay={{
-          delay: 3500,
+          delay: 4500,
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay]}
@@ -42,7 +42,9 @@ const Slider: React.FC<any> = ({ slides }) => {
                     <div>
                       <Popup
                         elem={
-                          <button className={`slider-button`}>Подробнее</button>
+                          <button className={`${styles.buttonS} slider-button`}>
+                            Подробнее
+                          </button>
                         }
                       >
                         <CForm />

@@ -64,6 +64,7 @@ section:not(:last-child) {
   color: white;
   font-weight: 700;
   padding: 14px 60px;
+  transition: 0.3s ease;
 }
 
 .primaryButtonWhite {
@@ -77,6 +78,7 @@ section:not(:last-child) {
   -webkit-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
   -moz-box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
   box-shadow: -1px 6px 12px 12px rgba(34, 60, 80, 0.06);
+  transition: 0.3s;
 }
 
 .small-button {

@@ -87,6 +87,13 @@
   font-size: 1rem;
   padding: 10px 60px;
   border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.contactsButton:hover {
+  background-color: var(--primary-green);
+  border: 1px solid var(--primary-green);
+  color: white;
 }
 
 @media screen and (max-width: 940px) {

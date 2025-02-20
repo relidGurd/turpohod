@@ -90,7 +90,7 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
         <Link
           style={{ cursor: "pointer" }}
           href={"/hike"}
-          className={`primaryButtonWhite`}
+          className={`${styles.upcomingHikesButton} primaryButtonWhite`}
         >
           Смотреть все
         </Link>
