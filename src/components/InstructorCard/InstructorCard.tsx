@@ -36,7 +36,13 @@ const InstructorCard: React.FC<any> = ({
                   alt={"Иконка инструктора"}
                 />
               </div>
-              <div className={styles.instructorsCategoryTitle}>{hike_type}</div>
+              <div className={styles.instructorsCategoryTitle}>
+                {hike_type.map((el: any) => (
+                  <span style={{ marginRight: "5px" }} key={el}>
+                    {el}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
           {isLongText ? (

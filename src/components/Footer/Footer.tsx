@@ -12,7 +12,7 @@ const Footer: React.FC<any> = ({ menu, socials }) => {
             <div className={styles.footerFormTitle}>Оставайтесь на связи</div>
             <p className={styles.footerFormText}>
               Мы всегда готовы помочь! Оставьте свои контактные данные, и мы
-              свяжемся с вами в ближайшее время."
+              свяжемся с вами в ближайшее время.
             </p>
             <div className={styles.footerContactsList}>
               <ul className={styles.socialsContainer}>

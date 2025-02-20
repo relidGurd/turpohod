@@ -2,7 +2,7 @@
 import ProductCard from "@/components/ProductCard/ProductCard";
 import styles from "./hikes.module.css";
 import Link from "next/link";
-import { DatePicker } from "antd";
+import { DatePicker, ConfigProvider } from "antd";
 import { useState } from "react";
 import PaginationHukes from "@/components/Pagination/PaginationHukes";
 import { Breadcrumb } from "antd";
@@ -13,6 +13,9 @@ import { notFound } from "next/navigation";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material"; // Индикатор загрузки
+import ruRU from "antd/locale/ru_RU";
+import "dayjs/locale/ru";
+dayjs.locale("ru");
 
 const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const [date, setDate] = useState<any>(undefined);
@@ -133,7 +136,7 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
     }
   };
 
-  const filterByDateTwo = async (ascending = false) => {
+  const filterByDateTwo = async (ascending = true) => {
     setIsLoading(true);
     setFiltredData([]);
 
@@ -213,11 +216,13 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
         <div>
           <div>
             <span className={styles.datePickName}>Выберите даты похода</span>
-            <DatePicker
-              onChange={onChangeP}
-              onOk={(value: any) => setDate(value)}
-              placeholder={"Выберите дату похода"}
-            />
+            <ConfigProvider locale={ruRU}>
+              <DatePicker
+                onChange={onChangeP}
+                onOk={(value) => setDate(value)}
+                placeholder={"Выберите дату похода"}
+              />
+            </ConfigProvider>
           </div>
         </div>
 
@@ -229,7 +234,8 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
                 onClick={() => filterByDateTwo()}
                 disabled={isLoading}
                 style={{
-                  textDecoration: "underline",
+                  paddingBottom: "1px",
+                  borderBottom: "1px solid var(--primary-green)",
                   color: "var(--primary-green)",
                 }}
               >
@@ -245,21 +251,23 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
                 disabled={isLoading}
                 style={{
                   marginRight: "1rem",
-                  textDecoration: "underline",
+                  paddingBottom: "1px",
+                  borderBottom: "1px solid var(--primary-green)",
                   color: "var(--primary-green)",
                 }}
               >
-                По возрастанию
+                Дешевле
               </button>
               <button
                 onClick={() => filterByPrice(false)}
                 disabled={isLoading}
                 style={{
-                  textDecoration: "underline",
                   color: "var(--primary-green)",
+                  paddingBottom: "1px",
+                  borderBottom: "1px solid var(--primary-green)",
                 }}
               >
-                По убыванию
+                Дороже
               </button>
             </div>
           </div>
