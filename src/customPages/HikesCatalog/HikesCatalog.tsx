@@ -24,7 +24,7 @@ const HikesCatalog: React.FC<any> = ({ data, pagination }: any) => {
   const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
   const router = useRouter();
 
-  const API_URL = `https://cms.pohod-spb.ru/wp-json/wc/v3/products`;
+  const API_URL = `https://cms.pohod-spb.ru/wp-json/wc/v3/products?per_page=100`;
 
   const onChangeP = (value: any, dateString: any) => {
     setDate(dateString);
