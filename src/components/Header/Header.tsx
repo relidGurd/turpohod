@@ -49,92 +49,103 @@ const Header: React.FC<any> = ({ menu, socials }) => {
   };
 
   return (
-    <motion.header
-      initial="open"
-      animate={visible ? "open" : "closed"}
-      variants={variants}
-      className={styles.mainHeader}
-    >
-      <div className={styles.headerContainer}>
-        <HeaderContacts
-          contacts={socials.header_contacts}
-          socials={socials.header_socials}
-        />
-        <HeaderNavigations menu={menu} logo={socials.header_logo} />
-      </div>
+    <header className={styles.test}>
+      <motion.div
+        initial="open"
+        animate={visible ? "open" : "closed"}
+        variants={variants}
+        className={styles.mainHeader}
+      >
+        <div className={styles.headerContainer}>
+          <HeaderContacts
+            contacts={socials.header_contacts}
+            socials={socials.header_socials}
+          />
+          <HeaderNavigations menu={menu} logo={socials.header_logo} />
+        </div>
 
-      <div className={`${styles.mobileContainer} main-container`}>
-        <div className={styles.mobileButtons}>
-          <Link href={"/"}>
-            <Image
-              src={socials.header_logo}
-              width={137}
-              height={56}
-              alt="Логотип"
-            />
-          </Link>
-          <div onClick={() => handleOpen()}>
-            <Burger />
+        <div className={`${styles.mobileContainer} main-container`}>
+          <div className={styles.mobileButtons}>
+            <Link href={"/"}>
+              <Image
+                src={socials.header_logo}
+                width={137}
+                height={56}
+                alt="Логотип"
+              />
+            </Link>
+            <div onClick={() => handleOpen()}>
+              <Burger />
+            </div>
           </div>
         </div>
-        <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: openMobile ? 0 : "100%" }}
-          transition={{ type: "spring", stiffness: 150 }}
-          className={styles.menuListMob}
-        >
-          <div className={styles.openedMobileMainSection}>
-            <div className={styles.Logo}>
-              {" "}
-              <Link href={"/"}>
-                <Image
-                  src={socials.header_logo}
-                  width={137}
-                  height={56}
-                  alt="Логотип"
-                />
-              </Link>
+      </motion.div>
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: openMobile ? 0 : "100%" }}
+        transition={{ type: "spring", stiffness: 150 }}
+        className={styles.menuListMob}
+      >
+        <div className={styles.openedMobileMainSection}>
+          <div className={styles.Logo}>
+            {" "}
+            <Link href={"/"}>
+              <Image
+                src={socials.header_logo}
+                width={137}
+                height={56}
+                alt="Логотип"
+              />
+            </Link>
+          </div>
+          <div onClick={() => handleClose()}>
+            <CloseIcon />
+          </div>
+        </div>
+        <nav>
+          <ul className={styles.mobileLinks}>
+            {menu.map((el: any, index: any) => (
+              <li key={index}>
+                <Link href={el.url} onClick={() => handleClose()}>
+                  {el.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div>
+            <div className={styles.mobileSocials}>
+              <span>Email:</span>
+              {socials.header_contacts[1].contact_text ? (
+                <a href={socials.header_contacts[1].contact_url}>
+                  {socials.header_contacts[1].contact_text}
+                </a>
+              ) : (
+                ""
+              )}
             </div>
-            <div onClick={() => handleClose()}>
-              <CloseIcon />
+            <div className={styles.mobileSocials}>
+              <span>Телефон:</span>
+              {socials.header_contacts[0].contact_text ? (
+                <a href={socials.header_contacts[0].contact_url}>
+                  {socials.header_contacts[0].contact_text}
+                </a>
+              ) : (
+                ""
+              )}
             </div>
           </div>
-          <nav>
-            <ul className={styles.mobileLinks}>
-              {menu.map((el: any, index: any) => (
-                <li key={index}>
-                  <Link href={el.url} onClick={() => handleClose()}>
-                    {el.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div>
-              <div className={styles.mobileSocials}>
-                <span>Email:</span>
-                {socials.header_contacts[1].contact_text ? (
-                  <a href={socials.header_contacts[1].contact_url}>
-                    {socials.header_contacts[1].contact_text}
-                  </a>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className={styles.mobileSocials}>
-                <span>Телефон:</span>
-                {socials.header_contacts[0].contact_text ? (
-                  <a href={socials.header_contacts[0].contact_url}>
-                    {socials.header_contacts[0].contact_text}
-                  </a>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-          </nav>
-        </motion.div>
-      </div>
-    </motion.header>
+          <ul className={styles.socialsContainer}>
+            {socials.header_socials.map((el: any, index: number) => (
+              <li key={index} className={styles.socialsItem}>
+                <Link href={el.social_url}>
+                  <Image alt="" src={el.social_icon} width={20} height={20} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </motion.div>
+    </header>
   );
 };
 

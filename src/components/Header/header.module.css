@@ -1,7 +1,11 @@
-.mainHeader {
+.test {
+  width: 100%;
   position: fixed;
   top: 0;
-  width: 100%;
+  z-index: 200;
+}
+
+.mainHeader {
   background-color: var(--primary-bg);
   z-index: 200;
   -webkit-box-shadow: 0px 21px 47px -31px rgba(34, 60, 80, 0.2);
@@ -55,6 +59,39 @@
 
 .mobileSocials a {
   font-size: 1.5rem;
+}
+
+.socialsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.socialsItem:nth-child(1) {
+  margin-right: 10px;
+}
+
+.socialsItem {
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Центрирует по горизонтали */
+  align-items: center; /* Центрирует по вертикали, если задана высота */
+}
+
+.socialsItem a {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Центрирует по горизонтали */
+  align-items: center; /* Центрирует по вертикали, если задана высота */
+}
+
+.socialsItem img {
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (max-width: 1000px) {
