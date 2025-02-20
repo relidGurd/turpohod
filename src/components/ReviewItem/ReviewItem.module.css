@@ -5,6 +5,7 @@
   -moz-box-shadow: -4px 21px 15px -15px rgba(34, 60, 80, 0.06);
   box-shadow: -4px 21px 15px -15px rgba(34, 60, 80, 0.06);
   padding: 20px;
+  max-width: 750px;
 }
 
 .reviewPresent {

@@ -34,9 +34,7 @@ const ReviewItem: React.FC<any> = ({ review }) => {
                   : "ffff",
               }}
             />
-            <Link className={styles.reviewLink} href={"/"}>
-              Подробнее
-            </Link>
+            <span className={styles.reviewLink}>Подробнее</span>
           </div>
         </li>
       }
