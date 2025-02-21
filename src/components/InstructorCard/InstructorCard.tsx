@@ -27,21 +27,23 @@ const InstructorCard: React.FC<any> = ({
           <div>
             <div className={styles.instructorTitle}>{title}</div>
             <div className={styles.categoryInstructor}>
-              <div className={styles.categoryInstructorIcon}>
-                <Image
-                  className={styles.instructorImage}
-                  src={"/mountain.svg"}
-                  width={25}
-                  height={25}
-                  alt={"Иконка инструктора"}
-                />
-              </div>
-              <div className={styles.instructorsCategoryTitle}>
-                {hike_type.map((el: any) => (
-                  <span style={{ marginRight: "5px" }} key={el}>
-                    {el}
-                  </span>
-                ))}
+              <div className={styles.cinstruct}>
+                <div className={styles.categoryInstructorIcon}>
+                  <Image
+                    className={styles.instructorImage}
+                    src={"/mountain.svg"}
+                    width={25}
+                    height={25}
+                    alt={"Иконка инструктора"}
+                  />
+                </div>
+                <div className={styles.instructorsCategoryTitle}>
+                  {hike_type.map((el: any) => (
+                    <span style={{ marginRight: "5px" }} key={el}>
+                      {el}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
