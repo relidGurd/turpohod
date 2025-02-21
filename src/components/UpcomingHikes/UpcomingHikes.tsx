@@ -45,6 +45,7 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
           modules={[Autoplay]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           slidesPerView={1}
+          autoHeight={true}
           spaceBetween={20}
           autoplay={{
             delay: 4000,
@@ -67,8 +68,14 @@ const UpcomingHikes: React.FC<any> = ({ hikes }) => {
           className={`mySwiper ${styles.productList}`}
         >
           {hikes.map((el: any) => (
-            <SwiperSlide key={el.id}>
+            <SwiperSlide style={{ height: "100%" }} key={el.id}>
               <Link
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                  justifyContent: "space-between",
+                }}
                 href={`/hike-detail/${
                   el.slug || el.link.split("/product/")[1]
                 }`}
