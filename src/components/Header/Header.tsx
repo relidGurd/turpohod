@@ -27,10 +27,12 @@ const Header: React.FC<any> = ({ menu, socials }) => {
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest < lastScrollY.current) {
-      setVisible(true);
+    if (latest === 0) {
+      setVisible(true); // Всегда показываем меню на самом верху страницы
+    } else if (latest < lastScrollY.current) {
+      setVisible(true); // Показываем при прокрутке вверх
     } else {
-      setVisible(false);
+      setVisible(false); // Скрываем при прокрутке вниз
     }
     lastScrollY.current = latest;
   });
@@ -54,8 +56,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
         initial="open"
         animate={visible ? "open" : "closed"}
         variants={variants}
-        className={styles.mainHeader}
-      >
+        className={styles.mainHeader}>
         <div className={styles.headerContainer}>
           <HeaderContacts
             contacts={socials.header_contacts}
@@ -84,8 +85,7 @@ const Header: React.FC<any> = ({ menu, socials }) => {
         initial={{ x: "100%" }}
         animate={{ x: openMobile ? 0 : "100%" }}
         transition={{ type: "spring", stiffness: 150 }}
-        className={styles.menuListMob}
-      >
+        className={styles.menuListMob}>
         <div className={styles.openedMobileMainSection}>
           <div className={styles.Logo}>
             {" "}
