@@ -27,7 +27,9 @@ const Header: React.FC<any> = ({ menu, socials }) => {
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest === 0) {
+    console.log(latest);
+
+    if (latest <= 100) {
       setVisible(true); // Всегда показываем меню на самом верху страницы
     } else if (latest < lastScrollY.current) {
       setVisible(true); // Показываем при прокрутке вверх
